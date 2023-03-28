@@ -1,9 +1,11 @@
 <script>
 import { RouterLink, RouterView } from 'vue-router'
 import CustomButton from './components/CustomElements/CustomButton.vue';
+import CustomTable from './components/CustomTable.vue';
 export default {
   components:{
-    CustomButton
+    CustomButton,
+    CustomTable
   }
 }
 </script>
@@ -40,60 +42,7 @@ export default {
         </div>
       </section>
       <section class="right section">
-        <table>
-          <caption>Pickets</caption>
-          <thead>
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">X</th>
-              <th scope="col">Y</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row" class="rowHead">1</th>
-              <td>1</td>
-              <td>3</td>
-            </tr>
-            <tr>
-              <th scope="row" class="rowHead">1</th>
-              <td>1</td>
-              <td>3</td>
-            </tr>
-            <tr>
-              <th scope="row" class="rowHead">1</th>
-              <td>1</td>
-              <td>3</td>
-            </tr>
-            <tr>
-              <th scope="row" class="rowHead">1</th>
-              <td>1</td>
-              <td>3</td>
-            </tr>
-            <tr>
-              <th scope="row" class="rowHead">1</th>
-              <td>1</td>
-              <td>3</td>
-            </tr>
-            <tr>
-              <th scope="row" class="rowHead">1</th>
-              <td>1</td>
-              <td>3</td>
-            </tr>
-            <tr>
-              <th scope="row" class="rowHead">1</th>
-              <td>1</td>
-              <td>3</td>
-            </tr>
-            <tr>
-              <th scope="row" class="rowHead">1</th>
-              <td>1</td>
-              <td>3</td>
-            </tr>
-
-         
-          </tbody>
-        </table>
+        <CustomTable></CustomTable>
       </section>
     </div>
   </main>
