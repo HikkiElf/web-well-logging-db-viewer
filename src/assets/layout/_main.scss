@@ -1,50 +1,46 @@
 main{
-    margin: 0 20%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    transform: translate(-50%, -50%);
+    // border: 2px solid red;
 }
 header {
-    position: relative;
-    text-align: center;
+    text-align:center;
+    margin: 0px 37%;
+    display: inline-block;
 }
 h1 {
-font-size: 28px;
+    font-size: 28px;
 }
 #bottom {
-display: flex;
-}
-
-caption{
-caption-side: left;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
 }
 
 .right.section{
-    flex: 1 1 auto;
-    display: flex;
     flex-direction: column;
-position: relative;
-
+    position: relative;
 }
 
 .left.section {
 display: flex;
+// border: 4px dotted silver;
 }
 
 td{
 text-align: center;
 }
 
-table {
-font-size: 28px;
-}
-
 #right-btn-side, #left-btn-side {
 display: flex;
 flex-direction: column;
-border: 1px dotted silver;
-margin: 5px;
-margin-top: 32px;
-height: 90%;
+align-items: stretch;
 }
 
 #picket-info {
-    display: flex;
+    // display: flex;
 }
