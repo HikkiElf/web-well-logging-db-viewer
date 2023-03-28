@@ -1,0 +1,50 @@
+main{
+    margin: 0 20%;
+}
+header {
+    position: relative;
+    text-align: center;
+}
+h1 {
+font-size: 28px;
+}
+#bottom {
+display: flex;
+}
+
+caption{
+caption-side: left;
+}
+
+.right.section{
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+position: relative;
+
+}
+
+.left.section {
+display: flex;
+}
+
+td{
+text-align: center;
+}
+
+table {
+font-size: 28px;
+}
+
+#right-btn-side, #left-btn-side {
+display: flex;
+flex-direction: column;
+border: 1px dotted silver;
+margin: 5px;
+margin-top: 32px;
+height: 90%;
+}
+
+#picket-info {
+    display: flex;
+}
