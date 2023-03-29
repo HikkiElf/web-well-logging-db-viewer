@@ -1,6 +1,17 @@
+<script setup>
+    import { ref, watch} from 'vue';
+    import CustomTable from '../components/CustomTable.vue';
+    import d from "../data/data.json"
+
+    const projectData = ref(d);
+
+
+
+</script>
+
 <template>
-    <div>
-        <h1>helo</h1>
+    <div class="table-container">
+        <CustomTable :project-data="projectData" />
     </div>
 </template>
 
