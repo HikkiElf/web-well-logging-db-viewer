@@ -1,5 +1,5 @@
 <script setup> 
-    import { defineProps } from 'vue';
+    // import { defineProps } from 'vue';
     const {data} = defineProps(['data']);
     const emit = defineEmits(['changePicketId']);
     const pickets = data[0].areas[0].pickets;

@@ -17,20 +17,22 @@
     </header>
     <main>
         <div class="buttons-container">
-            <div class="buttons-column">
+            <div class="left-buttons">
+                <CustomButton>Select area</CustomButton>
+                <CustomButton>Lorem.</CustomButton>
+                <CustomButton>Lorem.</CustomButton>
+                <CustomButton>Lorem.</CustomButton>
+                <CustomButton>Lorem.</CustomButton>
+            </div>
+
+            <div class="right-buttons">
                 <CustomButton>Lorem.</CustomButton>
                 <CustomButton>Lorem.</CustomButton>
                 <CustomButton>Lorem.</CustomButton>
                 <CustomButton>Lorem.</CustomButton>
                 <CustomButton>Lorem.</CustomButton>
             </div>
-            <div class="buttons-column">
-                <CustomButton>Lorem.</CustomButton>
-                <CustomButton>Lorem.</CustomButton>
-                <CustomButton>Lorem.</CustomButton>
-                <CustomButton>Lorem.</CustomButton>
-                <CustomButton>Lorem.</CustomButton>
-            </div>
+
         </div>
         <div class="picket-info-container">
             <h1>Picket Data</h1>
@@ -55,12 +57,16 @@
     main {
         display: flex;
         justify-content: space-around;
-        height: 80dvh;
     }
     .buttons-container {
         display: flex;
-        width: 200px;
+        width: 250px;
+
     }
+    .buttons-container button {
+        width: 80%;
+    }
+
     .picket-info-container {
         font-size: 30px;
     }
