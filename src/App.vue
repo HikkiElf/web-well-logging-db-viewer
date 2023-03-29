@@ -6,6 +6,6 @@ import MainView from './views/MainView.vue';
 
 <template>
     <main>
-        <RouterView to="/" />
+        <RouterView />
     </main>
 </template>

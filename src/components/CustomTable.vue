@@ -1,8 +1,11 @@
-<script setup>
+<script setup> 
     import { defineProps } from 'vue';
     const {data} = defineProps(['data']);
+    const emit = defineEmits(['changePicketId']);
     const pickets = data[0].areas[0].pickets;
-    console.log(data[0].areas[0].pickets[0].Measurements);
+    const getPicketId = (picketId) => {
+        emit('changePicketId', picketId-1);
+    }
 </script>
 
 <template>
@@ -12,7 +15,7 @@
             <th>X</th>
             <th>Y</th>
         </tr>
-        <tr v-for="picket in pickets" :key="picket.id">
+        <tr v-for="picket in pickets" :key="picket.id" @click="getPicketId(picket.id)">
             <td>{{ picket.id }}</td>
             <td>{{ picket.X_picket_coord }}</td>
             <td>{{ picket.Y_picket_coord }}</td>
@@ -48,6 +51,11 @@ td {
 
 tr {
     border-bottom: 2px solid white;
+    cursor: pointer;
+}
+
+tr:hover {
+    background-color: var(--tr-hover-bg-color);
 }
 
 tr:last-child {

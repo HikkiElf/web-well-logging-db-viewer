@@ -1,18 +1,19 @@
 <script setup>
     import { ref, watch} from 'vue';
     import CustomTable from '../components/CustomTable.vue';
-    import CustomButton from '../components/CustomButton.vue';
     import d from "../data/data.json";
 
     const projectData = ref(d);
-
-
-
+    const selectedPicketId = ref(0);
+    const handlePicketId = (id) => {
+        selectedPicketId.value = id;
+    };
+   
 </script>
 
 <template>
     <header>
-        <h1>"Project name" - "Area name"</h1>
+        <h1>"{{ projectData[0].projectName }}" - "{{ projectData[0].areas[0].areaName }}"</h1>
     </header>
     <main>
         <div class="buttons-container">
@@ -33,14 +34,14 @@
         </div>
         <div class="picket-info-container">
             <h1>Picket Data</h1>
-            <h2>Picket id: {{ projectData[0].areas[0].pickets[0].id }}</h2>
-            <h2>Electric Resistance: {{ projectData[0].areas[0].pickets[0].Measurements.electricResistance }}</h2>
-            <h2>Layer density: {{ projectData[0].areas[0].pickets[0].Measurements.layerDensity }}</h2>
-            <h2>Gamma ray: {{ projectData[0].areas[0].pickets[0].Measurements.gammaRay }}</h2>
-            <h2>Magnetic field: {{ projectData[0].areas[0].pickets[0].Measurements.magneticField }}</h2>
+            <h2>Picket id: {{ projectData[0].areas[0].pickets[selectedPicketId].id }}</h2>
+            <h2>Electric Resistance: {{ projectData[0].areas[0].pickets[selectedPicketId].Measurements.electricResistance }}</h2>
+            <h2>Layer density: {{ projectData[0].areas[0].pickets[selectedPicketId].Measurements.layerDensity }}</h2>
+            <h2>Gamma ray: {{ projectData[0].areas[0].pickets[selectedPicketId].Measurements.gammaRay }}</h2>
+            <h2>Magnetic field: {{ projectData[0].areas[0].pickets[selectedPicketId].Measurements.magneticField }}</h2>
         </div>
         <div class="table-container">
-            <CustomTable :data="projectData" />
+            <CustomTable :data="projectData" @changePicketId = "handlePicketId" />
         </div>
     </main>
 </template>
@@ -62,6 +63,11 @@
     }
     .picket-info-container {
         font-size: 30px;
+    }
+    .picket-info-container h1 {
+        font-weight: bold;
+        margin-bottom: 20px;
+        font-size: 35px;
     }
 
     .table-container {
