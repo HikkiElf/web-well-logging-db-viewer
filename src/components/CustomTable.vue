@@ -1,22 +1,8 @@
-<script>
-export default{
-    // props: {
-    //     data: Array,
-    //     columns: Array
-    // }
-    // data() {
-    //     return {
-    //         sortKey: '',
-    //         sortOrders: this.columns.reduce((o, key) => ((o[key] = 1), o), {})
-    //     }
-    // },
-    // methods: {
-    //     sortBy(key) {
-    //         this.sortKey = key
-    //         this.sortOrders[key] = this.sortOrders[key] * -1
-    //     }
-    // }
-}
+<script setup>
+    import { defineProps } from 'vue';
+    const {data} = defineProps(['data'])
+    console.log(data.value)
+
 </script>
 
 <template>

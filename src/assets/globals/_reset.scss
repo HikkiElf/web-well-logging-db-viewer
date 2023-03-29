@@ -11,6 +11,12 @@
 	box-sizing: border-box;
 }
 
+body {
+	color: white;
+	background: black;
+	transition: color 0.5s, background-color 0.5s;
+  }
+
 :focus,
 :active {
 	/*outline: none;*/
