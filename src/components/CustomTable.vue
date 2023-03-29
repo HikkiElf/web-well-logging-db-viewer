@@ -1,8 +1,8 @@
 <script setup>
     import { defineProps } from 'vue';
-    const {projectData} = defineProps(['projectData'])
-    const pickets = projectData[0].areas[0].pickets
-    console.log(projectData[0].areas[0].pickets[0].Measurements)
+    const {data} = defineProps(['data']);
+    const pickets = data[0].areas[0].pickets;
+    console.log(data[0].areas[0].pickets[0].Measurements);
 </script>
 
 <template>
@@ -23,7 +23,35 @@
 <style lang="scss" scoped>
 
 table {
+    width: 150px;
+    // height: 200px;
+    position: relative;
+    border-collapse: collapse;
     text-align: center;
+    overflow: auto;
+}
+
+th {
+    position: sticky;
+    top: 0;
+    background-color: var(--th-bg-color);
+    padding: 0px 8px;
+    height: 50px;
+    font-size: 30px;
+}
+
+td {
+    padding: 9px 8px;
+    transition: .1s linear;
+    font-size: 20px;
+}
+
+tr {
+    border-bottom: 2px solid white;
+}
+
+tr:last-child {
+    border-bottom: none;
 }
 
 </style>

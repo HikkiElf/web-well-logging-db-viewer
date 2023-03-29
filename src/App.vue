@@ -8,6 +8,4 @@ import MainView from './views/MainView.vue';
     <main>
         <RouterView to="/" />
     </main>
-
-
 </template>
