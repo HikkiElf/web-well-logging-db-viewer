@@ -44,13 +44,16 @@ const props = defineProps({
 }
 
 .modal-container {
-  width: 300px;
+  width: 800px;
+  height: 500px;
   margin: auto;
   padding: 20px 30px;
   background-color: black;
   border-radius: 2px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
+  border: 2px solid white;
+  border-radius: 8px;
 }
 
 .modal-header h3 {

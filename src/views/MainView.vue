@@ -3,7 +3,8 @@
     import { ref, watch} from 'vue';
     // import components
     import CustomTable from '../components/CustomTable.vue';
-    import CustomModal from '../components/CustomModal.vue';
+    import CustomSelectArea from '../components/CustomSelectArea.vue';
+    import CustomSelect from '../components/CustomSelect.vue';
     // import data
     import d from "../data/data.json";
 
@@ -12,30 +13,25 @@
     const handlePicketId = (id) => {
         selectedPicketId.value = id;
     };
-    const showModal = ref(false);
-   
+    const showSelectArea = ref(false);
+    const selectedAreaName = ref("Select Area");
+    const selectedProjectName = ref("Select Project");
+    const handleAreaName = (areaName) => {
+        selectedAreaName.value = areaName;
+    }
+    const handleProjectName = (projectName) => {
+        selectedProjectName.value = projectName;
+    }
 </script>
 
 <template>
     <header>
-        <h1>"{{ projectData[0].projectName }}" - "{{ projectData[0].areas[1].areaName }}"</h1>
+        <h1>"{{ selectedProjectName }}" - "{{ selectedAreaName }}"</h1>
     </header>
     <main>
         <div class="buttons-container">
             <div class="left-buttons">
-                <CustomButton id="show-modal" @click="showModal = true">Select area</CustomButton>
-                <Teleport to="body">
-                    <CustomModal :show="showModal" @close="showModal = false">
-                        <template #body>
-                            <h3>Custom body</h3>
-                        </template>
-                        <template #header>
-                            <h3>Custom header</h3>
-
-                        </template>
-                    </CustomModal>
-
-                </Teleport>
+                <CustomSelect :selectorType="'Select Area'" @getAreaName="handleAreaName"></CustomSelect>
                 <CustomButton>Edit area</CustomButton>
                 <CustomButton>Add picket</CustomButton>
                 <CustomButton>Edit data</CustomButton>
@@ -46,7 +42,7 @@
                 <CustomButton>Add area</CustomButton>
                 <CustomButton>Delete area</CustomButton>
                 <CustomButton>Delete picket</CustomButton>
-                <CustomButton>Select project</CustomButton>
+                <CustomSelect :selectorType="'Select Project'" @getProjectName="handleProjectName"></CustomSelect>
                 <CustomButton>Delete project</CustomButton>
             </div>
 
@@ -62,10 +58,22 @@
         <div class="table-container">
             <CustomTable :data="projectData" @changePicketId = "handlePicketId" />
         </div>
+        <div>
+            <Teleport to="body">
+                    <CustomSelectArea :show="showSelectArea" @close="showSelectArea = false">
+                        <template #header>
+                            <h3>Select Area</h3>
+                        </template>
+                        <template #body>
+                            <h3>Custom body</h3>
+                        </template>
+                    </CustomSelectArea>
+                </Teleport>
+        </div>
     </main>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
     header {
         text-align: center;
         font-size: 60px;
