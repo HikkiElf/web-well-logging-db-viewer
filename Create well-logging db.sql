@@ -1,45 +1,41 @@
-create table Employees (
+CREATE TABLE Employees (
 	id_employee SERIAL PRIMARY KEY,
 	full_name VARCHAR(256) NOT NULL,
-	post_name VARCHAR(256) NOT NULL,
+	post_name VARCHAR(256) NOT NULL
 )
 
-create table Projects(
+CREATE TABLE Projects(
 	id_project SERIAL PRIMARY KEY,
 	project_name VARCHAR(256) NOT NULL,
-	client_id INT,
-	employee_id INT,
-	area_id INT,
+	client_id INT NOT NULL,
+	employee_id INT NOT NULL,
+	area_id INT NULL,
 
 	FOREIGN KEY (client_id) REFERENCES Clients (id_client),
-	FOREIGN KEY (employee_id) REFERENCES Employees (employee_id),
+	FOREIGN KEY (employee_id) REFERENCES Employees (id_employee),
 	FOREIGN KEY (area_id) REFERENCES Areas (id_area)
 )
 
-create table Pickets(
+CREATE TABLE Pickets(
 	id_picket SERIAL PRIMARY KEY,
 	x_coord REAL NOT NULL,
 	y_coord REAL NOT NULL,
+	electric_resistance REAL NULL,
+	layer_density REAL NULL,
+	gamma_ray REAL NULL,
+	magnetic_field REAL NULL,
 	creation_date DATE NOT NULL
 )
 
-create table Clients (
+CREATE TABLE Clients (
 	id_client SERIAL PRIMARY KEY,
-	client_name VARCHAR(256)
+	client_name VARCHAR(256) NOT NULL
 )
 
-create table Areas(
+CREATE TABLE Areas(
 	id_area SERIAL PRIMARY KEY,
 	area_name VARCHAR(256) NOT NULL,
-	picket_id INT,
-	FOREIGN KEY (picket_id) REFERENCES Pickets (id_picket)
-)
-
-create table Measurement_data(
-	electric_resistance REAL,
-	layer_density REAL,
-	gamma_ray REAL,
-	magnetic_field REAL,
-	picket_id INT,
+	picket_id INT NOT NULL,
+	
 	FOREIGN KEY (picket_id) REFERENCES Pickets (id_picket)
 )
