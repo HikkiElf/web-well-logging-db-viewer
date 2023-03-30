@@ -19,18 +19,18 @@
         <div class="buttons-container">
             <div class="left-buttons">
                 <CustomButton>Select area</CustomButton>
-                <CustomButton>Lorem.</CustomButton>
-                <CustomButton>Lorem.</CustomButton>
-                <CustomButton>Lorem.</CustomButton>
-                <CustomButton>Lorem.</CustomButton>
+                <CustomButton>Edit area</CustomButton>
+                <CustomButton>Add picket</CustomButton>
+                <CustomButton>Edit data</CustomButton>
+                <CustomButton>Edit project</CustomButton>
             </div>
 
             <div class="right-buttons">
-                <CustomButton>Lorem.</CustomButton>
-                <CustomButton>Lorem.</CustomButton>
-                <CustomButton>Lorem.</CustomButton>
-                <CustomButton>Lorem.</CustomButton>
-                <CustomButton>Lorem.</CustomButton>
+                <CustomButton>Add area</CustomButton>
+                <CustomButton>Delete area</CustomButton>
+                <CustomButton>Delete picket</CustomButton>
+                <CustomButton>Select project</CustomButton>
+                <CustomButton>Delete project</CustomButton>
             </div>
 
         </div>
@@ -60,11 +60,13 @@
     }
     .buttons-container {
         display: flex;
-        width: 250px;
-
+        width: 280px;
+    }
+    .right-buttons {
+        margin-left: 20px;
     }
     .buttons-container button {
-        width: 80%;
+        width: 92%;
     }
 
     .picket-info-container {
