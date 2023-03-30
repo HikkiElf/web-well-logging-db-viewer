@@ -5,7 +5,7 @@
     const pickets = data[0].areas[0].pickets;
     const getPicketId = (picketId) => {
         emit('changePicketId', picketId-1);
-    }
+    };
 </script>
 
 <template>

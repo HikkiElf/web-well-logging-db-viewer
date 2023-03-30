@@ -19,6 +19,7 @@ button {
     border-radius: 8px;
     text-align: center;
     text-decoration: none;
+    font-size: 14px;
     transition: transform .05s ease-in-out;
 }
 
