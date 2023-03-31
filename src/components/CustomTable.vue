@@ -1,10 +1,35 @@
 <script setup> 
     // import { defineProps } from 'vue';
-    const {data} = defineProps(['data']);
-    const emit = defineEmits(['changePicketId']);
-    const pickets = data[0].areas[0].pickets;
-    const getPicketId = (picketId) => {
-        emit('changePicketId', picketId-1);
+    import { ref, watch, toRef, isRef } from "vue";
+    import data from "../data/data.json";
+    const props = defineProps(['areaName']);
+    const emit = defineEmits(['getPicketId']);
+    const allArea = data[0].areas;
+    console.log(toRef(props, 'areaName'));
+    // console.log(toRef(allArea, 'areaName'));
+    const searchIndex = ref(0);
+    const pickets = ref(allArea[0].pickets);
+
+    watch(toRef(props, 'areaName'), async (newName, oldName) => {
+        console.log(props.areaName);
+        console.log("IM HERE HELP ME " + oldName + " " + newName);
+        searchIndex.value = allArea.findIndex((area) => area.area_name === props.areaName);
+        if (searchIndex.value == -1) searchIndex.value = 0;
+        console.log(searchIndex.value + " = searchIndex update");
+        console.log(allArea[searchIndex.value].pickets)
+        pickets.value = allArea[searchIndex.value].pickets;
+    })
+
+
+
+
+    const log = (msg) => {
+        console.log(msg + " CUSTOM LOG");
+    }
+
+    const changePicketId = (picketId) => {
+        emit('getPicketId', picketId-1);
+
     };
 </script>
 
@@ -15,7 +40,7 @@
             <th>X</th>
             <th>Y</th>
         </tr>
-        <tr v-for="picket in pickets" :key="picket.id" @click="getPicketId(picket.id)">
+        <tr v-for="picket in pickets" :key="picket.id" @click="changePicketId(picket.id); log(props.areaName)" >
             <td>{{ picket.id }}</td>
             <td>{{ picket.X_picket_coord }}</td>
             <td>{{ picket.Y_picket_coord }}</td>

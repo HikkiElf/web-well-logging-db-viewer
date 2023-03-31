@@ -1,280 +1,268 @@
 [
     {
         "id": 1,
-        "projectName": "Mountains",
+        "project_name": "Mountains",
         "areas": [
             {
                 "id":1,
-                "areaName": "Gimalay",
-                "coords": {
-                    "X_area_coord": 234,
-                    "Y_area_coord": 234 
-                },
-                "areaSquare": 234,
+                "area_name": "Gimalay",
                 "pickets": [
                     {
                         "id": 1,
                         "X_picket_coord": 1,
                         "Y_picket_coord": 1,
-                        "Measurements": {
-                            "electricResistance": 0.001,
-                            "layerDensity": 40,
-                            "gammaRay": 0.1,
-                            "magneticField": 0.2
-                        }
+
+                            "electric_resistance": 0.001,
+                            "layer_density": 40,
+                            "gamma_ray": null,
+                            "magnetic_field": 0.2
                     },
                     {
                         "id": 2,
                         "X_picket_coord": 2,
                         "Y_picket_coord": 1,
-                        "Measurements": {
-                            "electricResistance": 0.001,
-                            "layerDensity": 4,
-                            "gammaRay": 0.1,
-                            "magneticField": 0.2345
-                        }
+
+                            "electric_resistance": 0.001,
+                            "layer_density": 4,
+                            "gamma_ray": 0.1,
+                            "magnetic_field": 0.2345
+                        
                     },
                     {
                         "id": 3,
                         "X_picket_coord": 3,
                         "Y_picket_coord": 1,
-                        "Measurements": {
-                            "electricResistance": 0.001,
-                            "layerDensity": 40,
-                            "gammaRay": 0.11,
-                            "magneticField": 0.2
-                        }
+          
+                            "electric_resistance": 0.001,
+                            "layer_density": 40,
+                            "gamma_ray": 0.11,
+                            "magnetic_field": 0.2
                     },
                     {
                         "id": 4,
                         "X_picket_coord": 235,
                         "Y_picket_coord": 0.123,
-                        "Measurements": {
-                            "electricResistance": 0.001,
-                            "layerDensity": 40,
-                            "gammaRay": 0.1,
-                            "magneticField": 0.2
-                        }
+                        
+                            "electric_resistance": 0.001,
+                            "layer_density": 40,
+                            "gamma_ray": 0.1,
+                            "magnetic_field": 0.2
+                        
                     },
                     {
                         "id": 5,
                         "X_picket_coord": 3,
                         "Y_picket_coord": 1,
-                        "Measurements": {
-                            "electricResistance": 0.001,
-                            "layerDensity": 40,
-                            "gammaRay": 0.1,
-                            "magneticField": 0.2
-                        }
+                        
+                            "electric_resistance": 0.001,
+                            "layer_density": 40,
+                            "gamma_ray": 0.1,
+                            "magnetic_field": 0.2
+                        
                     },
                     {
                         "id": 6,
                         "X_picket_coord": 3,
                         "Y_picket_coord": 1,
-                        "Measurements": {
-                            "electricResistance": 0.001,
-                            "layerDensity": 40,
-                            "gammaRay": 0.1,
-                            "magneticField": 0.2
-                        }
+                        
+                            "electric_resistance": 0.001,
+                            "layer_density": 40,
+                            "gamma_ray": 0.1,
+                            "magnetic_field": 0.2
+                        
                     },
                     {
                         "id": 7,
                         "X_picket_coord": 3,
                         "Y_picket_coord": 1,
-                        "Measurements": {
-                            "electricResistance": 0.001,
-                            "layerDensity": 40,
-                            "gammaRay": 0.1,
-                            "magneticField": 0.2
-                        }
+                        
+                            "electric_resistance": 0.001,
+                            "layer_density": 40,
+                            "gamma_ray": 0.1,
+                            "magnetic_field": 0.2
+                        
                     },
                     {
                         "id": 8,
                         "X_picket_coord": 3,
                         "Y_picket_coord": 1,
-                        "Measurements": {
-                            "electricResistance": 0.001,
-                            "layerDensity": 40,
-                            "gammaRay": 0.1,
-                            "magneticField": 0.2
-                        }
+                        
+                            "electric_resistance": 0.001,
+                            "layer_density": 40,
+                            "gamma_ray": 0.1,
+                            "magnetic_field": 0.2
+                        
                     },
                     {
                         "id": 9,
                         "X_picket_coord": 3,
                         "Y_picket_coord": 1,
-                        "Measurements": {
-                            "electricResistance": 0.001,
-                            "layerDensity": 40,
-                            "gammaRay": 0.1,
-                            "magneticField": 0.2
-                        }
+                        
+                            "electric_resistance": 0.001,
+                            "layer_density": 40,
+                            "gamma_ray": 0.1,
+                            "magnetic_field": 0.2
+                        
                     },
                     {
                         "id": 10,
                         "X_picket_coord": 3,
                         "Y_picket_coord": 1,
-                        "Measurements": {
-                            "electricResistance": 0.001,
-                            "layerDensity": 40,
-                            "gammaRay": 0.1,
-                            "magneticField": 0.2
-                        }
+                        
+                            "electric_resistance": 0.001,
+                            "layer_density": 40,
+                            "gamma_ray": 0.1,
+                            "magnetic_field": 0.2
+                        
                     },
                     {
                         "id": 11,
                         "X_picket_coord": 3,
                         "Y_picket_coord": 1,
-                        "Measurements": {
-                            "electricResistance": 0.001,
-                            "layerDensity": 40,
-                            "gammaRay": 0.1,
-                            "magneticField": 0.2
-                        }
+                        
+                            "electric_resistance": 0.001,
+                            "layer_density": 40,
+                            "gamma_ray": 0.1,
+                            "magnetic_field": 0.2
+                        
                     },
                     {
                         "id": 12,
                         "X_picket_coord": 3,
                         "Y_picket_coord": 1,
-                        "Measurements": {
-                            "electricResistance": 0.001,
-                            "layerDensity": 40,
-                            "gammaRay": 0.1,
-                            "magneticField": 0.2
-                        }
+                        
+                            "electric_resistance": 0.001,
+                            "layer_density": 40,
+                            "gamma_ray": 0.1,
+                            "magnetic_field": 0.2
+                        
                     },
                     {
                         "id": 13,
                         "X_picket_coord": 3,
                         "Y_picket_coord": 1,
-                        "Measurements": {
-                            "electricResistance": 0.001,
-                            "layerDensity": 40,
-                            "gammaRay": 0.1,
-                            "magneticField": 0.2
-                        }
+                        
+                            "electric_resistance": 0.001,
+                            "layer_density": 40,
+                            "gamma_ray": 0.1,
+                            "magnetic_field": 0.2
+                        
                     },
                     {
                         "id": 14,
                         "X_picket_coord": 3,
                         "Y_picket_coord": 1,
-                        "Measurements": {
-                            "electricResistance": 0.001,
-                            "layerDensity": 40,
-                            "gammaRay": 0.1,
-                            "magneticField": 0.2
-                        }
+                        
+                            "electric_resistance": 0.001,
+                            "layer_density": 40,
+                            "gamma_ray": 0.1,
+                            "magnetic_field": 0.2
+                        
                     },
                     {
                         "id": 15,
                         "X_picket_coord": 3,
                         "Y_picket_coord": 1,
-                        "Measurements": {
-                            "electricResistance": 0.001,
-                            "layerDensity": 40,
-                            "gammaRay": 0.1,
-                            "magneticField": 0.2
-                        }
+                        
+                            "electric_resistance": 0.001,
+                            "layer_density": 40,
+                            "gamma_ray": 0.1,
+                            "magnetic_field": 0.2
+                        
                     },
                     {
                         "id": 16,
                         "X_picket_coord": 3,
                         "Y_picket_coord": 1,
-                        "Measurements": {
-                            "electricResistance": 0.001,
-                            "layerDensity": 40,
-                            "gammaRay": 0.1,
-                            "magneticField": 0.2
-                        }
+                        
+                            "electric_resistance": 0.001,
+                            "layer_density": 40,
+                            "gamma_ray": 0.1,
+                            "magnetic_field": 0.2
+                        
                     },
                     {
                         "id": 17,
                         "X_picket_coord": 3,
                         "Y_picket_coord": 1,
-                        "Measurements": {
-                            "electricResistance": 0.001,
-                            "layerDensity": 40,
-                            "gammaRay": 0.1,
-                            "magneticField": 0.2
-                        }
+                        
+                            "electric_resistance": 0.001,
+                            "layer_density": 40,
+                            "gamma_ray": 0.1,
+                            "magnetic_field": 0.2
+                        
                     },
                     {
                         "id": 18,
                         "X_picket_coord": 3,
                         "Y_picket_coord": 1,
-                        "Measurements": {
-                            "electricResistance": 0.001,
-                            "layerDensity": 40,
-                            "gammaRay": 0.1,
-                            "magneticField": 0.2
-                        }
+                        
+                            "electric_resistance": 0.001,
+                            "layer_density": 40,
+                            "gamma_ray": 0.1,
+                            "magnetic_field": 0.2
+                        
                     },
                     {
                         "id": 19,
                         "X_picket_coord": 3,
                         "Y_picket_coord": 1,
-                        "Measurements": {
-                            "electricResistance": 0.001,
-                            "layerDensity": 40,
-                            "gammaRay": 0.1,
-                            "magneticField": 0.2
-                        }
+                        
+                            "electric_resistance": 0.001,
+                            "layer_density": 40,
+                            "gamma_ray": 0.1,
+                            "magnetic_field": 0.2
+                        
                     },
                     {
                         "id": 20,
                         "X_picket_coord": 3,
                         "Y_picket_coord": 1,
-                        "Measurements": {
-                            "electricResistance": 0.001,
-                            "layerDensity": 40,
-                            "gammaRay": 0.1,
-                            "magneticField": 0.2
-                        }
+                        
+                            "electric_resistance": 0.001,
+                            "layer_density": 40,
+                            "gamma_ray": 0.1,
+                            "magnetic_field": 0.2
+                        
                     }
                 ]
             },
             {
                 "id":2,
-                "areaName": "Alps",
-                "coords": {
-                    "X_area_coord": 100,
-                    "Y_area_coord": 100 
-                },
-                "areaSquare": 100,
+                "area_name": "Alps",
                 "pickets": [
                     {
                         "id": 1,
                         "X_picket_coord": 1,
                         "Y_picket_coord": 1,
-                        "Measurements": {
-                            "electricResistance": 0.001,
-                            "layerDensity": 40,
-                            "gammaRay": 0.1,
-                            "magneticField": 0.2
-                        }
+                        
+                            "electric_resistance": 0.001,
+                            "layer_density": 40,
+                            "gamma_ray": 0.1,
+                            "magnetic_field": 0.2
+                        
                     },
                     {
                         "id": 2,
                         "X_picket_coord": 2,
                         "Y_picket_coord": 1,
-                        "Measurements": {
-                            "electricResistance": 0.001,
-                            "layerDensity": 40,
-                            "gammaRay": 0.1,
-                            "magneticField": 0.2
-                        }
+                        
+                            "electric_resistance": 0.001,
+                            "layer_density": 40,
+                            "gamma_ray": 0.1,
+                            "magnetic_field": 0.2
+                        
                     },
                     {
                         "id": 3,
                         "X_picket_coord": 3,
                         "Y_picket_coord": 1,
-                        "Measurements": {
-                            "electricResistance": 0.001,
-                            "layerDensity": 40,
-                            "gammaRay": 0.1,
-                            "magneticField": 0.2
-                        }
+                        
+                            "electric_resistance": 0.001,
+                            "layer_density": 40,
+                            "gamma_ray": 0.1,
+                            "magnetic_field": 0.2
+                        
                     }
                 ]
             }
