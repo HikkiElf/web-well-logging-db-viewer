@@ -5,13 +5,12 @@
     const props = defineProps(['areaName']);
     const emit = defineEmits(['getPicketId']);
     const allArea = data[0].areas;
-    console.log(toRef(props, 'areaName'));
     // console.log(toRef(allArea, 'areaName'));
     const searchIndex = ref(0);
     const pickets = ref(allArea[0].pickets);
 
     watch(toRef(props, 'areaName'), async (newName, oldName) => {
-        console.log(props.areaName);
+        console.log(props.areaName + " CURRENT AREA");
         console.log("IM HERE HELP ME " + oldName + " " + newName);
         searchIndex.value = allArea.findIndex((area) => area.area_name === props.areaName);
         if (searchIndex.value == -1) searchIndex.value = 0;
