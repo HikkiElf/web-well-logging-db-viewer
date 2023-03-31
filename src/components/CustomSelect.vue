@@ -1,29 +1,78 @@
 <script setup>
-    import { onBeforeMount, ref } from 'vue';
+    import { ref, watch, toRef } from 'vue';
     import data from "../data/data.json";
 
-    import { onMounted } from 'vue';
-
-    const props = defineProps(['selectorType']);
+    const props = defineProps(['selectorType' , 'selectedProject']);
 
     const emit = defineEmits(['getAreaName', 'getProjectName'])
 
     const projects = data;
 
+    const searchProjectIndex = ref(0);
+
     const selectedProjectValue = ref(data[0].project_name);
 
     const selectedAreaValue = ref(data[0].areas[0].area_name);
 
-    const areasInProject = data[0].areas;
+    const areasInProject = ref(data[0].areas);
 
+    const testObject = ref({ 
+        id: 1, 
+        areas: [{
+                id: 1,
+                area_name: 'test1'
+            }],
+        id: 2,
+        areas: [
+            {
+                id: 2,
+                area_name: 'test2'
+            }
+        ]
+        
+    })
 
+    
+    
     const getSelectedAreaName = (areaName) => {
         emit('getAreaName', areaName);
     };
     const getSelectedProjectName = (projectName) => {
         emit('getProjectName', projectName);
+        
+        // console.log(areasInProject.value, "WHY ARE YOU BULLIN ME")
     };
 
+    watch(toRef(props, 'selectedProject'), async (newName, oldName) => {
+        console.log(newName + " CURRENT POJECT");
+        searchProjectIndex.value = data.findIndex((project) => project.project_name === newName);
+        console.log(projects[searchProjectIndex.value].areas);
+        areasInProject.value = data[searchProjectIndex.value].areas;
+        selectedAreaValue.value = areasInProject.value[0].area_name;
+        // areasInProject.value = projects[].areas
+        // searchIndex.value = allArea.findIndex((area) => area.area_name === props.areaName);
+        // if (searchIndex.value == -1) searchIndex.value = 0;
+    })
+
+    // const getProjectAreasNames = (tree) => {
+    //     const stack = Array (...tree);
+    //     const result = [];
+    //     while (stack.length > 0) {
+    //         const node = stack.pop();
+    //         if(node.area_name !== undefined) {
+    //             result.push(node.area_name)
+    //         }
+    //         if(node.areas?.length) {
+    //             stack.push(...node.areas)
+    //         }
+    //     }
+    //     return result;
+
+    // }
+
+    // console.log(getProjectAreasNames(data));
+
+    
 
     // onBeforeMount(() => {
     //    getSelectedAreaName(selectedAreaValue);
@@ -33,15 +82,15 @@
 </script>
 
 <template>
-    <select v-if="props.selectorType == 'Select Area'" name="Select Area" id="select-area" v-model="selectedAreaValue" @change="getSelectedAreaName(selectedAreaValue)" @load="getSelectedAreaName(selectedAreaValue)">
+    <select v-if="props.selectorType == 'Select Area'" name="Select Area" id="select-area" :selectedProject="props.selectedProject" v-model="selectedAreaValue" @change="getSelectedAreaName(selectedAreaValue)">
         <option disabled value="">Select Area</option>
-        <option :value="area.area_name" v-for="area in areasInProject" :key="area.id">
+        <option v-for="area in areasInProject" :key="area.id" :value="area.area_name"  >
             {{ area.area_name }}
         </option>
     </select>
-    <select v-else-if="props.selectorType == 'Select Project'" name="Select Project" id="select-project" v-model="selectedProjectValue" @change="getSelectedProjectName(selectedProjectValue)" @load="getSelectedProjectName(selectedProjectValue)">
+    <select v-else-if="props.selectorType == 'Select Project'" name="Select Project" id="select-project" v-model="selectedProjectValue" @change="getSelectedProjectName(selectedProjectValue)">
         <option disabled value="">Select Project</option>
-        <option :value="project.project_name" v-for="project in projects" :key="project.id">
+        <option v-for="project in projects" :key="project.id" :value="project.project_name">
             {{ project.project_name }}
         </option>
     </select>

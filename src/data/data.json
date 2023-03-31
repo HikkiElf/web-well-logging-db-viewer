@@ -267,5 +267,77 @@
                 ]
             }
         ]
+    },
+    {
+        "id": 2,
+        "project_name": "Fields",
+        "areas": [
+            {
+                "id":1,
+                "area_name": "Great Plato",
+                "pickets": [
+                    {
+                        "id": 1,
+                        "X_picket_coord": 10,
+                        "Y_picket_coord": 112,
+
+                            "electric_resistance": 23,
+                            "layer_density": 652,
+                            "gamma_ray": 463,
+                            "magnetic_field": 234
+                    },
+                    {
+                        "id": 2,
+                        "X_picket_coord": 532,
+                        "Y_picket_coord": 12,
+
+                            "electric_resistance": 0.242,
+                            "layer_density": 0.4,
+                            "gamma_ray": 0.6,
+                            "magnetic_field": 9
+                        
+                    }
+                ]
+            },
+            {
+                "id":2,
+                "area_name": "Siberian Plato",
+                "pickets": [
+                    {
+                        "id": 1,
+                        "X_picket_coord": 45,
+                        "Y_picket_coord": 75,
+                        
+                            "electric_resistance": 0.301,
+                            "layer_density": 64,
+                            "gamma_ray": 89,
+                            "magnetic_field": 0.45
+                        
+                    },
+                    {
+                        "id": 2,
+                        "X_picket_coord": 3,
+                        "Y_picket_coord": 6,
+                        
+                            "electric_resistance": 0.7,
+                            "layer_density": 460,
+                            "gamma_ray": 23,
+                            "magnetic_field": 3
+                        
+                    },
+                    {
+                        "id": 3,
+                        "X_picket_coord": 30,
+                        "Y_picket_coord": 123,
+                        
+                            "electric_resistance": 0.1,
+                            "layer_density": 4,
+                            "gamma_ray": 0,
+                            "magnetic_field": 1
+                        
+                    }
+                ]
+            }
+        ]
     }
 ]

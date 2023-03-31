@@ -14,6 +14,8 @@
 
     const searchAreaIndex = ref(0);
 
+    const searchProjectIndex = ref(0);
+
     
     const projectData = ref(d);
     const selectedPicketId = ref(0);
@@ -22,13 +24,16 @@
     };
     const showSelectArea = ref(false);
     const selectedAreaName = ref("Gimalay"); // HARDCODE
-    const selectedProjectName = ref("Select Project");
+    const selectedProjectName = ref("Mountains"); // HARDCODE
     const handleAreaName = (areaName) => {
         selectedAreaName.value = areaName;
         searchAreaIndex.value = allAreas.findIndex((area) => area.area_name === selectedAreaName.value);
+        selectedPicketId.value = 0;
     }
     const handleProjectName = (projectName) => {
         selectedProjectName.value = projectName;
+        searchProjectIndex.value = d.findIndex((project) => project.project_name === selectedProjectName.value);
+        selectedPicketId.value = 0;
     };
 </script>
 
@@ -37,7 +42,7 @@
         <h1>Select project: </h1>
         <CustomSelect :selectorType="'Select Project'" @getProjectName="handleProjectName"></CustomSelect>
         <h1>Select area:</h1>
-        <CustomSelect :selectorType="'Select Area'" @getAreaName="handleAreaName"></CustomSelect>
+        <CustomSelect :selectorType="'Select Area'" @getAreaName="handleAreaName" :selected-project="selectedProjectName"></CustomSelect>
         <!-- <h1>"{{ selectedProjectName }}" - "{{ selectedAreaName }}"</h1> -->
     </header>
     <main>
@@ -57,14 +62,14 @@
         </div>
         <div class="picket-info-container">
             <h1>Picket Data</h1>
-            <h2>Picket id: {{ projectData[0].areas[searchAreaIndex].pickets[selectedPicketId].id }}</h2>
-            <h2>Electric Resistance: {{ projectData[0].areas[searchAreaIndex].pickets[selectedPicketId].electric_resistance }}</h2>
-            <h2>Layer density: {{ projectData[0].areas[searchAreaIndex].pickets[selectedPicketId].layer_density }}</h2>
-            <h2>Gamma ray: {{ projectData[0].areas[searchAreaIndex].pickets[selectedPicketId].gamma_ray }}</h2>
-            <h2>Magnetic field: {{ projectData[0].areas[searchAreaIndex].pickets[selectedPicketId].magnetic_field }}</h2>
+            <h2>Picket id: {{ projectData[searchProjectIndex].areas[searchAreaIndex].pickets[selectedPicketId].id }}</h2>
+            <h2>Electric Resistance: {{ projectData[searchProjectIndex].areas[searchAreaIndex].pickets[selectedPicketId].electric_resistance }}</h2>
+            <h2>Layer density: {{ projectData[searchProjectIndex].areas[searchAreaIndex].pickets[selectedPicketId].layer_density }}</h2>
+            <h2>Gamma ray: {{ projectData[searchProjectIndex].areas[searchAreaIndex].pickets[selectedPicketId].gamma_ray }}</h2>
+            <h2>Magnetic field: {{ projectData[searchProjectIndex].areas[searchAreaIndex].pickets[selectedPicketId].magnetic_field }}</h2>
         </div>
         <div class="table-container">
-            <CustomTable :area-name="selectedAreaName" @getPicketId = "handlePicketId" />
+            <CustomTable :area-name="selectedAreaName" :project-name="selectedProjectName" @getPicketId = "handlePicketId" />
         </div>
     </main>
     <div>
