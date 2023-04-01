@@ -1,94 +1,56 @@
 <script setup>
-const props = defineProps({
-  show: Boolean
-});
+  import { ref, watch, toRef } from 'vue';
+
+  import data from "../data/data.json";
+
+  const props = defineProps(['selectedProjectIndex']); // take in
+
+  const emit = defineEmits(['getAreaName']); // give out 
+
+  const selectedAreaName = ref(data[0].areas[0].area_name); // default zero index
+
+  const areasInProject = ref(data[0].areas);
+
+  const getSelectedAreaName = (areaName) => {
+        emit('getAreaName', areaName);
+    };
+
+  watch(props.selectedProjectIndex, async (newIndex) => {
+    areasInProject.value = data[newIndex].areas;
+  });
+
 </script>
 
 <template>
-  <Transition name="modal">
-    <div v-if="show" class="modal-mask">
-      <div class="modal-container">
-        <div class="modal-header">
-          <slot name="header">default header</slot>
-        </div>
-
-        <div class="modal-body">
-          <slot name="body">default body</slot>
-        </div>
-
-        <div class="modal-footer">
-          <slot name="footer">
-            default footer
-            <button
-              class="modal-default-button"
-              @click="$emit('close')"
-            >OK</button>
-          </slot>
-        </div>
-      </div>
-    </div>
-  </Transition>
+  <select name="Select Area" id="select-area" :selectedProjectIndex="props.selectedProjectIndex" v-model="selectedAreaName" @change="getSelectedAreaName(selectedAreaName)">
+        <option disabled value="">Select Area</option>
+        <option v-for="area in areasInProject" :key="area.id" :value="area.area_name"  >
+            {{ area.area_name }}
+        </option>
+    </select>
 </template>
 
-<style>
-.modal-mask {
-  position: fixed;
-  z-index: 9998;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  transition: opacity 0.3s ease;
-}
+<style scoped>
+select {
+        --select-bg-color: var(--body-bg-color);
 
-.modal-container {
-  width: 800px;
-  height: 500px;
-  margin: auto;
-  padding: 20px 30px;
-  background-color: black;
-  border-radius: 2px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-  transition: all 0.3s ease;
-  border: 2px solid white;
-  border-radius: 8px;
-}
+        cursor: pointer;
+        appearance: none;
+        opacity: 0.6;
+        transition: opacity 0.2s;
+        /* background-color: var(--select-bg-color); */
+    }
 
-.modal-header h3 {
-  margin-top: 0;
-  color: #42b983;
-}
+    select:hover {
+        opacity: 1;
+        transition: opacity 0.2s;
+    }
 
-.modal-body {
-  margin: 20px 0;
-}
 
-.modal-default-button {
-  float: right;
-}
-
-/*
- * The following styles are auto-applied to elements with
- * transition="modal" when their visibility is toggled
- * by Vue.js.
- *
- * You can easily play with the modal transition by editing
- * these styles.
- */
-
-.modal-enter-from {
-  opacity: 0;
-}
-
-.modal-leave-to {
-  opacity: 0;
-}
-
-.modal-enter-from .modal-container,
-.modal-leave-to .modal-container {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-}
+    select:required:invalid {
+        color: gray;
+    }
+    option {
+        background-color: var(--select-bg-color);
+    }
 </style>

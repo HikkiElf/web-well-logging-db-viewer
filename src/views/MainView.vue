@@ -5,44 +5,47 @@
     // import components
     import CustomTable from '../components/CustomTable.vue';
     import CustomSelectArea from '../components/CustomSelectArea.vue';
-    import CustomSelect from '../components/CustomSelect.vue';
+    import CustomSelectProject from '../components/CustomSelectProject.vue';
 
     // import data
     import data from "../data/data.json";
-
-    const allAreas = data[0].areas
-
+    
     const searchAreaIndex = ref(0);
-
+    
     const searchProjectIndex = ref(0);
 
+    const allAreas = ref(data[searchProjectIndex.value].areas)
+
     const selectedPicketId = ref(0);
+
     const handlePicketId = (id) => {
         selectedPicketId.value = id;
     };
-    const showSelectArea = ref(false);
-    const selectedProjectName = ref(data[0].project_name); // HARDCODE
+
     const handleAreaName = (areaName) => {
-        selectedAreaName.value = areaName;
-        searchAreaIndex.value = allAreas.findIndex((area) => area.area_name === selectedAreaName.value);
+        console.log(allAreas.value);
+        allAreas.value = data[searchProjectIndex.value].areas;
+        searchAreaIndex.value = allAreas.value.findIndex((area) => area.area_name === areaName);
         selectedPicketId.value = 0;
-    }
-    const handleProjectName = (projectName) => {
-        selectedProjectName.value = projectName;
-        searchProjectIndex.value = data.findIndex((project) => project.project_name === selectedProjectName.value);
-        selectedPicketId.value = 0;
-        selectedAreaName.value = data[searchProjectIndex.value].areas[0].area_name;
+        console.log(searchProjectIndex.value, searchAreaIndex.value)
+        console.log(data[searchProjectIndex.value].areas[searchAreaIndex.value].pickets);
     };
-    const selectedAreaName = ref(data[searchProjectIndex.value].areas[0].area_name); // HARDCODE
+
+    const handleProjectName = (projectName) => {
+        searchProjectIndex.value = data.findIndex((data) => data.project_name === projectName);
+        selectedPicketId.value = 0;
+        console.log(searchProjectIndex.value, searchAreaIndex.value)
+        console.log(data[searchProjectIndex.value].areas[searchAreaIndex.value].pickets);
+    };
+
 </script>
 
 <template>
     <header>
         <h1>Select project: </h1>
-        <CustomSelect :selectorType="'Select Project'" @getProjectName="handleProjectName"></CustomSelect>
+        <CustomSelectProject @getProjectName="handleProjectName"></CustomSelectProject>
         <h1>Select area:</h1>
-        <CustomSelect :selectorType="'Select Area'" @getAreaName="handleAreaName" :selected-project="selectedProjectName"></CustomSelect>
-        <!-- <h1>"{{ selectedProjectName }}" - "{{ selectedAreaName }}"</h1> -->
+        <CustomSelectArea @getAreaName="handleAreaName" :selected-project-index="searchProjectIndex"></CustomSelectArea>
     </header>
     <main>
         <div class="buttons-container">
@@ -68,21 +71,9 @@
             <h2>Magnetic field: {{ data[searchProjectIndex].areas[searchAreaIndex].pickets[selectedPicketId].magnetic_field }}</h2>
         </div>
         <div class="table-container">
-            <CustomTable :area-name="selectedAreaName" :project-name="selectedProjectName" @getPicketId = "handlePicketId" />
+            <CustomTable :area-search-index="searchAreaIndex" :project-search-index="searchProjectIndex" @getPicketId = "handlePicketId" />
         </div>
     </main>
-    <div>
-        <Teleport to="body">
-                <CustomSelectArea :show="showSelectArea" @close="showSelectArea = false">
-                    <template #header>
-                        <h3>Select Area</h3>
-                    </template>
-                    <template #body>
-                        <h3>Custom body</h3>
-                    </template>
-                </CustomSelectArea>
-            </Teleport>
-    </div>
 </template>
 
 <style scoped>

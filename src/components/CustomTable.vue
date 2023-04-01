@@ -2,48 +2,21 @@
     // import { defineProps } from 'vue';
     import { ref, watch, toRef, isRef } from "vue";
     import data from "../data/data.json";
-    const props = defineProps(['areaName', 'projectName']);
+    const props = defineProps(['areaSearchIndex', 'projectSearchIndex']);
     const emit = defineEmits(['getPicketId']);
-    // console.log(toRef(allArea, 'areaName'));
-    const searchIndex = ref(0);
-    const searchAreaIndex = ref(0);
-    searchAreaIndex.value = data.findIndex((project) => project.project_name === props.projectName);
-    console.log(searchAreaIndex.value);
-    const allArea = data[searchAreaIndex.value].areas;
-    const pickets = ref(allArea[0].pickets);
-
-    watch(toRef(props, 'areaName'), async (newName, oldName) => {
-        console.log(props.areaName + " CURRENT AREA");
-        console.log("IM HERE HELP ME " + oldName + " " + newName);
-        searchIndex.value = allArea.findIndex((area) => area.area_name === props.areaName);
-        if (searchIndex.value == -1) searchIndex.value = 0;
-        console.log(searchIndex.value + " = searchIndex update");
-        console.log(allArea[searchIndex.value].pickets)
-        pickets.value = allArea[searchIndex.value].pickets;
-        console.log(pickets.value)
+    const pickets = ref(data[props.projectSearchIndex].areas[props.areaSearchIndex].pickets);
+    
+    watch(toRef(props, 'projectSearchIndex'), async (newIndex) => {
+    //    console.log(newIndex, 'projectSearchIndex');
+       pickets.value = data[props.projectSearchIndex].areas[props.areaSearchIndex].pickets;
     })
 
-    watch(toRef(props, 'projectName'), async (newName, oldName) => {
-        console.log(props.areaName + " CURRENT AREA");
-        console.log("IM HERE HELP ME " + oldName + " " + newName);
-        searchAreaIndex.value = allArea.findIndex((area) => area.area_name === props.areaName);
-        if (searchAreaIndex.value == -1) searchAreaIndex.value = 0;
-        console.log(searchAreaIndex.value + " = searchIndex update");
-        console.log(allArea[searchAreaIndex.value].pickets)
-        pickets.value = allArea[searchAreaIndex.value].pickets;
-        console.log(pickets.value)
+    watch(toRef(props, 'areaSearchIndex'), async (newIndex) => {
+        pickets.value = data[props.projectSearchIndex].areas[props.areaSearchIndex].pickets;
     })
-
-
-
-
-    const log = (msg) => {
-        console.log(msg + " CUSTOM LOG");
-    }
 
     const changePicketId = (picketId) => {
         emit('getPicketId', picketId-1);
-
     };
 </script>
 
@@ -54,7 +27,7 @@
             <th>X</th>
             <th>Y</th>
         </tr>
-        <tr v-for="picket in pickets" :key="picket.id" @click="changePicketId(picket.id); log(props.areaName)" >
+        <tr v-for="picket in pickets" :key="picket.id" @click="changePicketId(picket.id)" >
             <td>{{ picket.id }}</td>
             <td>{{ picket.X_picket_coord }}</td>
             <td>{{ picket.Y_picket_coord }}</td>
