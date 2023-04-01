@@ -7,9 +7,17 @@ CREATE TABLE Users (
 
 CREATE TABLE Projects(
 	id_project SERIAL PRIMARY KEY,
-	project_name VARCHAR(256) NOT NULL,
+	project_name VARCHAR(256) NOT NULL
+	-- user_id INT NOT NULL,
+
+	-- FOREIGN KEY (user_id) REFERENCES Users (id_user)
+)
+
+CREATE TABLE Users_to_projects(
+	project_id INT NOT NULL,
 	user_id INT NOT NULL,
 
+	FOREIGN KEY (project_id) REFERENCES Projects (id_project),
 	FOREIGN KEY (user_id) REFERENCES Users (id_user)
 )
 
@@ -48,8 +56,21 @@ INSERT INTO Pickets (
 	creation_date,
 	area_id)
 VALUES 
-(6,7,83,57,0.49,0.23,'12/12/2023', 4),
-(4,7,0.1,0.8,0.6,0.01,'12/13/2023', 4)
+(1, 1, 0.456, 40, null, 0.2, '2003-10-01', 1),
+(2, 1, 0.465, 50, 0.001, 0.4, '2003-10-02', 1),
+(3, 1, 0.231, 30, 0.002, 0.564, '2003-10-03', 1),
+(1, 2, 0.111, 60, 0.003, 0.23, '2003-10-04', 2),
+(1, 3, 0.222, 20, 0.004, 0.1, '2003-10-05', 2),
+(3, 3, 0.333, 10, 0.005, 0.97, '2003-10-06', 3),
+(4, 3, 0.444, 4, 0.006, 0.73, '2003-10-07', 3),
+(5, 4, 0.555, 70, 0.007, 0.86, '2003-10-08', 3),
+(6, 5, 0.666, 80, 0.008, 0.78, '2003-10-09', 3),
+(7, 8, 0.777, 90, 0.009, 0.25, '2003-10-10', 3),
+(11, 9, 0.888, 140, 0.01, 0.75, '2003-10-13', 4),
+(123, 132, 0.999, 110, 0.011, 0.12, '2003-10-14', 4),
+(10, 110, 0.98, 120, 0.012, 0.42, '2003-10-15', 4),
+(9, 9, 83, 57, 0.49, 0.23, '10/16/2023', 4),
+(8, 8, 0.1, 0.8, 0.6, 0.01, '10/17/2023', 4)
 
 select * from Pickets
 
