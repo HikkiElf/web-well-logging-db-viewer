@@ -26,11 +26,11 @@
     watch(toRef(props, 'projectName'), async (newName, oldName) => {
         console.log(props.areaName + " CURRENT AREA");
         console.log("IM HERE HELP ME " + oldName + " " + newName);
-        searchIndex.value = allArea.findIndex((area) => area.area_name === props.areaName);
-        if (searchIndex.value == -1) searchIndex.value = 0;
-        console.log(searchIndex.value + " = searchIndex update");
-        console.log(allArea[searchIndex.value].pickets)
-        pickets.value = allArea[searchIndex.value].pickets;
+        searchAreaIndex.value = allArea.findIndex((area) => area.area_name === props.areaName);
+        if (searchAreaIndex.value == -1) searchAreaIndex.value = 0;
+        console.log(searchAreaIndex.value + " = searchIndex update");
+        console.log(allArea[searchAreaIndex.value].pickets)
+        pickets.value = allArea[searchAreaIndex.value].pickets;
         console.log(pickets.value)
     })
 
