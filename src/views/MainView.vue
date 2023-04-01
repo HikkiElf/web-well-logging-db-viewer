@@ -1,9 +1,9 @@
 <script setup>
     // import functions
-    import { ref, watch} from 'vue';
+    import { ref, watch, onMounted} from 'vue';
     import axios, { isCancel, AxiosError} from 'axios';
 
-    import getProjects from '../data/getProjects';
+    import {getAreas, getProjects} from '../data/getProjects';
 
     // import components
     import CustomTable from '../components/CustomTable.vue';
@@ -26,7 +26,19 @@
     // const responce = ((await axios.get('https://well-logging.mrsmori.moe/projects')).status);
     // console.log(responce);
 
-    getProjects("ha")
+    // getAreas();
+
+    const test = ref(null);
+
+
+    onMounted(async () => {
+        test.value = await axios.get('https://well-logging.mrsmori.moe/login?login=Bob&password=123');
+        console.log(test.value.data.projects[0].project_name);
+    })
+
+    // const test = ref(getProjects());
+    // console.log(test.value.then((result) => ));
+
 
     const handlePicketId = (id) => {
         selectedPicketId.value = id;
@@ -51,9 +63,6 @@
 </script>
 
 <template>
-    <Suspense>
-        <responce />
-    </Suspense>
     <header>
         <h1>Select project: </h1>
         <CustomSelectProject @getProjectName="handleProjectName"></CustomSelectProject>
