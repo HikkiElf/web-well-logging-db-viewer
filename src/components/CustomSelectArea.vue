@@ -15,7 +15,7 @@
         emit('getAreaName', areaName);
     };
 
-  watch(props.selectedProjectIndex, async (newIndex) => {
+  watch(toRef(props, 'selectedProjectIndex'), async (newIndex) => {
     areasInProject.value = data[newIndex].areas;
   });
 
