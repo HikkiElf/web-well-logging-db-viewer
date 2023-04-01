@@ -28,29 +28,32 @@
 
     // getAreas();
 
-    const test = ref(null);
+    const result = ref(null);
+    const test = ref();
 
 
     onMounted(async () => {
         test.value = await axios.get('https://well-logging.mrsmori.moe/login?login=Bob&password=123');
-        console.log(test.value.data.projects[0].project_name);
+        result.value = test.value.data.projects[searchProjectIndex.value].project_name;
+        console.log(result.value);
     })
-
+    
     // const test = ref(getProjects());
     // console.log(test.value.then((result) => ));
-
-
+    
+    
     const handlePicketId = (id) => {
         selectedPicketId.value = id;
     };
-
+    
     const handleAreaName = (areaName) => {
         console.log(allAreas.value);
         allAreas.value = data[searchProjectIndex.value].areas;
         searchAreaIndex.value = allAreas.value.findIndex((area) => area.area_name === areaName);
-        selectedPicketId.value = 0;
+        selectedPicketId.value = 0; 
         console.log(searchProjectIndex.value, searchAreaIndex.value)
         console.log(data[searchProjectIndex.value].areas[searchAreaIndex.value].pickets);
+        
     };
 
     const handleProjectName = (projectName) => {
@@ -58,6 +61,7 @@
         selectedPicketId.value = 0;
         console.log(searchProjectIndex.value, searchAreaIndex.value)
         console.log(data[searchProjectIndex.value].areas[searchAreaIndex.value].pickets);
+        result.value = test.value.data.projects[searchProjectIndex.value].project_name;
     };
 
 </script>
