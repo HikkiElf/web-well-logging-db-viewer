@@ -1,6 +1,9 @@
 <script setup>
     // import functions
     import { ref, watch} from 'vue';
+    import axios, { isCancel, AxiosError} from 'axios';
+
+    import getProjects from '../data/getProjects';
 
     // import components
     import CustomTable from '../components/CustomTable.vue';
@@ -17,6 +20,13 @@
     const allAreas = ref(data[searchProjectIndex.value].areas)
 
     const selectedPicketId = ref(0);
+
+    // const axios = a
+
+    // const responce = ((await axios.get('https://well-logging.mrsmori.moe/projects')).status);
+    // console.log(responce);
+
+    getProjects("ha")
 
     const handlePicketId = (id) => {
         selectedPicketId.value = id;
@@ -41,6 +51,9 @@
 </script>
 
 <template>
+    <Suspense>
+        <responce />
+    </Suspense>
     <header>
         <h1>Select project: </h1>
         <CustomSelectProject @getProjectName="handleProjectName"></CustomSelectProject>

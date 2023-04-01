@@ -7,7 +7,7 @@
 
   const emit = defineEmits(['getAreaName']); // give out 
 
-  const selectedAreaName = ref(data[0].areas[0].area_name); // default zero index
+  const selectedAreaName = ref(data[props.selectedProjectIndex].areas[0].area_name); // default zero index
 
   const areasInProject = ref(data[0].areas);
 
@@ -17,6 +17,7 @@
 
   watch(toRef(props, 'selectedProjectIndex'), async (newIndex) => {
     areasInProject.value = data[newIndex].areas;
+    selectedAreaName.value = data[props.selectedProjectIndex].areas[0].area_name;
   });
 
 </script>
