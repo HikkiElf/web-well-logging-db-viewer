@@ -19,7 +19,6 @@ const Auth = async (login, password) => {
 
     catch (er) {
         alert('Please insert login and password');
-        return error.value;
     };
     
 };
@@ -63,6 +62,7 @@ const Auth = async (login, password) => {
     }
     h2{
         font-size: 20px;
+        margin-bottom: 5px;
     }
     button {
         appearance: none;
