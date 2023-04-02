@@ -89,7 +89,7 @@
         width: 100%;
         height: 50dvh;
         justify-content: space-around;
-        border: 2px solid red;
+        /* border: 2px solid red; */
     }
     .buttons-container {
         display: flex;
