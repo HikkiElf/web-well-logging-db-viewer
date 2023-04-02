@@ -1,14 +1,13 @@
 <script setup>
     // import functions
-    import { ref, watch, onMounted} from 'vue';
-    import axios, { isCancel, AxiosError} from 'axios';
-
-    import {getAreas, getProjects} from '../data/getProjects';
+    import { ref, onUpdated} from 'vue';
+    import axios from 'axios';
 
     // import components
     import CustomTable from '../components/CustomTable.vue';
     import CustomSelectArea from '../components/CustomSelectArea.vue';
     import CustomSelectProject from '../components/CustomSelectProject.vue';
+    import { RouterLink } from 'vue-router';
     
     const selectedProjectId = ref(0);
 
@@ -19,6 +18,8 @@
     const allPicketsInArea = ref();
 
     const selectedPicketData = ref();
+
+    const userStatus = ref();
     
     const handlePicketId = (id) => {
         selectedPicketId.value = id;
@@ -38,12 +39,17 @@
         selectedPicketId.value = 0;
     };
 
+    const handelUserStatus = (status) => {
+        userStatus.value = status
+        console.log(userStatus.value, "YEAAAAAHA");
+    };
+
 </script>
 
 <template>
     <header>
         <h1>Select project: </h1>
-        <CustomSelectProject @get-project-id="handleProjectId"></CustomSelectProject>
+        <CustomSelectProject @get-project-id="handleProjectId" @get-user-status="handelUserStatus"></CustomSelectProject>
         <h1>Select area:</h1>
         <CustomSelectArea @get-area-id="handleAreaId" :selected-project-id="selectedProjectId"></CustomSelectArea>
     </header>

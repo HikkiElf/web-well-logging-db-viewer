@@ -3,7 +3,7 @@
     import { useLoginPassword } from '../data/loginPassword';
     import axios, { isCancel, AxiosError} from 'axios';
 
-    const emit = defineEmits(['getProjectId']);
+    const emit = defineEmits(['getProjectId', 'getUserStatus']);
 
     const responseGetProjects = ref();
 
@@ -22,8 +22,14 @@
             console.log(error);
             
         }
-        refAllProjects.value = JSON.stringify(responseGetProjects.value.data.projects);
-        refAllProjects.value = JSON.parse(refAllProjects.value);
+        refAllProjects.value = JSON.stringify(responseGetProjects.value.data.projects);        
+        try {
+            refAllProjects.value = JSON.parse(refAllProjects.value);
+        } catch (error) {
+            alert('This account does not exist.');
+            
+        }
+        emit('getUserStatus', responseGetProjects.value.data.status)
     })
 
     const getSelectedProjectId = (projectName) => {

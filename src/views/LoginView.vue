@@ -3,19 +3,24 @@ import { RouterLink } from 'vue-router';
 import { ref } from 'vue';
 import { useLoginPassword } from '../data/loginPassword';
 import { storeToRefs } from 'pinia';
+import axios from 'axios';
 
 const {loginPassword} = useLoginPassword()
+let response = false;
+const Auth = async (login, password) => {
+    try {
+        response = await axios.get(`https://well-logging.mrsmori.moe/login?login=${login}&password=${password}`, { withCredentials: true });     
+        if (response.data.is_error == true){
+            alert(response.data.error_texts)
+        }
+    }
+
+    catch (error) {
+        alert('Please insert login and password');
+    }
+    console.log(response);
+}
 console.log(loginPassword);
-
-// const login = ref("");
-// const password = ref("");
-
-const sendLoginPass = (login, password) => {
-    console.log(loginPassword);
-};
-
-
-
 
 </script>
 
@@ -26,8 +31,8 @@ const sendLoginPass = (login, password) => {
             <input type="text" v-model="loginPassword.login" placeholder="Login" class="Login">
             <h2>Input your password:</h2>
             <input type="password" v-model="loginPassword.password" placeholder="Pass" class="Password">
-            <RouterLink to="/">
-                <button @click="sendLoginPass()">Enter</button>
+            <RouterLink :to="response ? '/' : '/login'">
+                <button @click="Auth(loginPassword.login, loginPassword.password)">Enter</button>
             </RouterLink>
         </div>
     </main>
