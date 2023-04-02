@@ -18,17 +18,13 @@
     onMounted(async () => {
         try {
             responseGetProjects.value = await axios.get(`https://well-logging.mrsmori.moe/login?login=${loginPassword.login}&password=${loginPassword.password}`, { withCredentials: true });      
-        } catch (error) {
+        } 
+        catch (error) {
             console.log(error);
-            
         }
         refAllProjects.value = JSON.stringify(responseGetProjects.value.data.projects);        
-        try {
-            refAllProjects.value = JSON.parse(refAllProjects.value);
-        } catch (error) {
-            alert('This account does not exist.');
-            
-        }
+        refAllProjects.value = JSON.parse(refAllProjects.value);
+
         emit('getUserStatus', responseGetProjects.value.data.status)
     })
 

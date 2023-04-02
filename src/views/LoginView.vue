@@ -6,19 +6,22 @@ import { storeToRefs } from 'pinia';
 import axios from 'axios';
 
 const {loginPassword} = useLoginPassword()
-let response = false;
+let response = []
+const error = ref(true);
 const Auth = async (login, password) => {
     try {
         response = await axios.get(`https://well-logging.mrsmori.moe/login?login=${login}&password=${password}`, { withCredentials: true });     
         if (response.data.is_error == true){
-            alert(response.data.error_texts)
+            alert(response.data.error_texts);
         }
+        else {error.value = !error.value; console.log(error.value, "IM HERE");}
     }
 
-    catch (error) {
+    catch (er) {
         alert('Please insert login and password');
+        return error.value
     }
-    console.log(response);
+    
 }
 console.log(loginPassword);
 
@@ -31,7 +34,7 @@ console.log(loginPassword);
             <input type="text" v-model="loginPassword.login" placeholder="Login" class="Login">
             <h2>Input your password:</h2>
             <input type="password" v-model="loginPassword.password" placeholder="Pass" class="Password">
-            <RouterLink :to="response ? '/' : '/login'">
+            <RouterLink :to="!error ? '/' : '/login'">
                 <button @click="Auth(loginPassword.login, loginPassword.password)">Enter</button>
             </RouterLink>
         </div>
