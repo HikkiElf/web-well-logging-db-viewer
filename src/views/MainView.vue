@@ -73,6 +73,9 @@
         <div class="table-container">
             <CustomTable :selected-area-id="selecteAreaId" @getPicketId = "handlePicketId" />
         </div>
+        <RouterLink to="/login">
+            <button>Exit</button>
+        </RouterLink>
     </main>
 </template>
 

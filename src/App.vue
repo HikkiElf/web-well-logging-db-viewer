@@ -4,6 +4,6 @@ import {RouterView} from 'vue-router'
 
 <template>
     <main>
-        <RouterView to="/login"/>
+        <RouterView />
     </main>
 </template>

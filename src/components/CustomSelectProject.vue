@@ -1,5 +1,6 @@
 <script setup>
     import { ref, watch, toRef, onMounted } from 'vue';
+    import { useLoginPassword } from '../data/loginPassword';
     import axios, { isCancel, AxiosError} from 'axios';
 
     const emit = defineEmits(['getProjectId']);
@@ -12,9 +13,11 @@
 
     const selectedProjectId = ref(1);
 
+    const {loginPassword} = useLoginPassword()
+
     onMounted(async () => {
         try {
-            responseGetProjects.value = await axios.get('https://well-logging.mrsmori.moe/login?login=Bob&password=123', { withCredentials: true });      
+            responseGetProjects.value = await axios.get(`https://well-logging.mrsmori.moe/login?login=${loginPassword.login}&password=${loginPassword.password}`, { withCredentials: true });      
         } catch (error) {
             console.log(error);
             

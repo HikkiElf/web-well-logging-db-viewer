@@ -1,4 +1,21 @@
 <script setup>
+import { RouterLink } from 'vue-router';
+import { ref } from 'vue';
+import { useLoginPassword } from '../data/loginPassword';
+import { storeToRefs } from 'pinia';
+
+const {loginPassword} = useLoginPassword()
+console.log(loginPassword);
+
+// const login = ref("");
+// const password = ref("");
+
+const sendLoginPass = (login, password) => {
+    console.log(loginPassword);
+};
+
+
+
 
 </script>
 
@@ -6,9 +23,12 @@
     <main>
         <div class="inputs-container">
             <h2>Input your login:</h2>
-            <input type="text" placeholder="Login">
+            <input type="text" v-model="loginPassword.login" placeholder="Login" class="Login">
             <h2>Input your password:</h2>
-            <input type="password" placeholder="Pass">
+            <input type="password" v-model="loginPassword.password" placeholder="Pass" class="Password">
+            <RouterLink to="/">
+                <button @click="sendLoginPass()">Enter</button>
+            </RouterLink>
         </div>
     </main>
 
@@ -36,6 +56,10 @@
     }
     h2{
         font-size: 20px;
+    }
+    button {
+        appearance: none;
+        color: white;
     }
 
 </style>
