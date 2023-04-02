@@ -1,17 +1,17 @@
 <script setup> 
     // import { defineProps } from 'vue';
     import { ref, watch, toRef, isRef } from "vue";
-    import data from "../data/data.json";
-    const props = defineProps(['areaSearchIndex', 'projectSearchIndex']);
-    const emit = defineEmits(['getPicketId']);
-    const pickets = ref(data[props.projectSearchIndex].areas[props.areaSearchIndex].pickets);
-    
-    watch(toRef(props, 'projectSearchIndex'), async (newIndex) => {
-       pickets.value = data[props.projectSearchIndex].areas[props.areaSearchIndex].pickets;
-    })
+    import axios, { isCancel, AxiosError} from 'axios';
 
-    watch(toRef(props, 'areaSearchIndex'), async (newIndex) => {
-        pickets.value = data[props.projectSearchIndex].areas[props.areaSearchIndex].pickets;
+    const props = defineProps(['selectedAreaId']);
+
+    const emit = defineEmits(['getPicketId']);
+
+    const refPicketsInArea = ref();
+
+    watch(toRef(props, 'selectedAreaId'), async (newIndex) => {
+        refPicketsInArea.value = (await axios.get(`https://well-logging.mrsmori.moe/pickets?area_id=${props.selectedAreaId}`)).data;
+        console.log(refPicketsInArea.value, "PICKETS")
     })
 
     const changePicketId = (picketId) => {
@@ -26,7 +26,7 @@
             <th>X</th>
             <th>Y</th>
         </tr>
-        <tr v-for="picket in pickets" :key="picket.id" @click="changePicketId(picket.id)" >
+        <tr v-for="picket in refPicketsInArea" :key="picket.id" @click="changePicketId(picket.id)" >
             <td>{{ picket.id }}</td>
             <td>{{ picket.X_picket_coord }}</td>
             <td>{{ picket.Y_picket_coord }}</td>

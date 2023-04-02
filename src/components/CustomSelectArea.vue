@@ -13,7 +13,6 @@
     const refAreasInProject = ref([]);
 
     const getSelectedAreaId = (areaName) => {
-        console.log(refAreasInProject.value);
         selectedAreaId.value = refAreasInProject.value.find((area) => area.name == areaName).id;
         emit('getAreaId', selectedAreaId.value);
     };
@@ -23,11 +22,8 @@
 
     watch(toRef(props, 'selectedProjectId'), async (newIndex) => {
         responseGetAreas.value = await axios.get(`https://well-logging.mrsmori.moe/areas?project_id=${props.selectedProjectId}`);
-        console.log(responseGetAreas.value.data);
         refAreasInProject.value = JSON.stringify(responseGetAreas.value.data);
         refAreasInProject.value = JSON.parse(refAreasInProject.value);
-        console.log(responseGetAreaId.value);
-        console.log(refAreasInProject.value);
     });
 
 </script>
@@ -49,6 +45,8 @@ select {
         appearance: none;
         opacity: 0.6;
         transition: opacity 0.2s;
+        border: 1px dotted white;
+        padding: 5px;
         /* background-color: var(--select-bg-color); */
     }
 

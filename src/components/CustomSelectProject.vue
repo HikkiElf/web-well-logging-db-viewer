@@ -5,9 +5,11 @@
     const emit = defineEmits(['getProjectId']);
 
     const responseGetProjects = ref();
-    let allProjects = [];
+
     const refAllProjects = ref();
+
     const selectedProjectName = ref("");
+
     const selectedProjectId = ref(1);
 
     onMounted(async () => {
@@ -22,8 +24,7 @@
     })
 
     const getSelectedProjectId = (projectName) => {
-        selectedProjectId.value = refAllProjects.value.find((project) => project.project_name === projectName).id;
-        console.log(selectedProjectId.value, "selectedProjectId in CustomSelectProject");  
+        selectedProjectId.value = refAllProjects.value.find((project) => project.project_name === projectName).id;  
         emit('getProjectId', selectedProjectId.value);
     };
 
@@ -40,7 +41,7 @@
 </template>
 
 
-<style>
+<style scoped>
 select {
         --select-bg-color: var(--body-bg-color);
 
@@ -48,6 +49,8 @@ select {
         appearance: none;
         opacity: 0.6;
         transition: opacity 0.2s;
+        border: 1px dotted white;
+        padding: 5px;
         /* background-color: var(--select-bg-color); */
     }
 

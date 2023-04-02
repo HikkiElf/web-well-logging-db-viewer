@@ -10,9 +10,9 @@
     import CustomSelectArea from '../components/CustomSelectArea.vue';
     import CustomSelectProject from '../components/CustomSelectProject.vue';
     
-    const searchAreaIndex = ref(0);
-    
     const selectedProjectId = ref(0);
+
+    const selecteAreaId = ref(0);
 
     const selectedPicketId = ref(0);
     
@@ -20,18 +20,16 @@
         selectedPicketId.value = id;
     };
     
-    const handleAreaId = (areaName) => {
-        console.log(areaName);
-        // allAreas.value = data[searchProjectIndex.value].areas;
-        // searchAreaIndex.value = allAreas.value.findIndex((area) => area.area_name === areaName);
+    const handleAreaId = (areaId) => {
+        selecteAreaId.value = areaId;
+        console.log(selecteAreaId.value, "areaId in MainView");
         selectedPicketId.value = 0;
-        
     };
 
     const handleProjectId = (projectId) => {
         selectedProjectId.value = projectId;
-        console.log(projectId);
         selectedPicketId.value = 0;
+        console.log(projectId, "projectId in MainView");
     };
 
 </script>
@@ -67,7 +65,7 @@
             <h2>Magnetic field: {{ data[searchProjectIndex].areas[searchAreaIndex].pickets[selectedPicketId].magnetic_field }}</h2> -->
         </div>
         <div class="table-container">
-            <!-- <CustomTable :area-search-index="searchAreaIndex" :project-search-index="searchProjectIndex" @getPicketId = "handlePicketId" /> -->
+            <CustomTable :selected-area-id="selecteAreaId" @getPicketId = "handlePicketId" />
         </div>
     </main>
 </template>
