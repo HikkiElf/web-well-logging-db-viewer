@@ -21,25 +21,19 @@
 
     const selectedPicketId = ref(0);
 
-    // const axios = a
-
-    // const responce = ((await axios.get('https://well-logging.mrsmori.moe/projects')).status);
-    // console.log(responce);
-
-    // getAreas();
-
-    const result = ref(null);
-    const test = ref();
+    const responseGetProjects = ref();
+    const responceGetProjectName = ref("");
 
 
-    onMounted(async () => {
-        test.value = await axios.get('https://well-logging.mrsmori.moe/login?login=Bob&password=123');
-        result.value = test.value.data.projects[searchProjectIndex.value].project_name;
-        console.log(result.value);
+    onMounted( () => {
+        // try {
+        //     responseGetProjects.value = axios.get('https://well-logging.mrsmori.moe/projects');
+            
+        // } catch (error) {
+        //     console.log(error);
+        // }
+        // responceGetProjectName.value = responseGetProjects.value.data.projects[searchProjectIndex.value].project_name;
     })
-    
-    // const test = ref(getProjects());
-    // console.log(test.value.then((result) => ));
     
     
     const handlePicketId = (id) => {
@@ -59,9 +53,11 @@
     const handleProjectName = (projectName) => {
         searchProjectIndex.value = data.findIndex((data) => data.project_name === projectName);
         selectedPicketId.value = 0;
-        console.log(searchProjectIndex.value, searchAreaIndex.value)
-        console.log(data[searchProjectIndex.value].areas[searchAreaIndex.value].pickets);
-        result.value = test.value.data.projects[searchProjectIndex.value].project_name;
+        // console.log(searchProjectIndex.value, searchAreaIndex.value)
+        // console.log(data[searchProjectIndex.value].areas[searchAreaIndex.value].pickets);
+
+        // responceGetProjectName.value = responseGetProjects.value.data.projects[searchProjectIndex.value].project_name;
+        // console.log(responceGetProjectName.value, "IM HERE HELP");
     };
 
 </script>

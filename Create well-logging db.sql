@@ -8,12 +8,9 @@ CREATE TABLE Users (
 CREATE TABLE Projects(
 	id_project SERIAL PRIMARY KEY,
 	project_name VARCHAR(256) NOT NULL
-	-- user_id INT NOT NULL,
-
-	-- FOREIGN KEY (user_id) REFERENCES Users (id_user)
 )
 
-CREATE TABLE Users_to_projects(
+CREATE TABLE Users_projects(
 	project_id INT NOT NULL,
 	user_id INT NOT NULL,
 
@@ -73,38 +70,39 @@ VALUES
 (8, 8, 0.1, 0.8, 0.6, 0.01, '10/17/2023', 4)
 
 select * from Pickets
+select * from Users_projects
+select * from areas
 
+INSERT INTO Users_projects
+VALUES
+(1, 1),
+(1, 2),
+(1, 3),
+(2, 1),
+(2, 3),
+(2, 4)
 
-
-
--- INSERT INTO Users (full_name, status_name, pass)
--- VALUES
--- ('Bob', 'Employee', '123'),
--- ('Mark', 'Client', '333'),
--- ('Boss', 'Moderator', 'admin')
-
--- INSERT INTO Users (full_name, status_name, pass)
--- VALUES
--- ('Klint', 'Client', '111')
+INSERT INTO Users (full_name, status_name, pass)
+VALUES
+('Bob', 'Employee', '123'),
+('Mark', 'Client', '333'),
+('Boss', 'Moderator', 'admin'),
+('Klint', 'Client', '111')
 
 select * from Users
 select * from Projects
 
--- INSERT INTO Projects (project_name, user_id)
+-- INSERT INTO Projects (project_name)
 -- VALUES
--- ('Mountains', 1),
--- ('Mountains', 2),
--- ('Mountains', 3),
--- ('Fields', 1),
--- ('Fields', 4),
--- ('Fields', 3)
+-- ('Mountains'),
+-- ('Fields')
 
 -- INSERT INTO Areas (area_name, project_id)
 -- VALUES
 -- ('Gimalay', 1),
 -- ('Alps', 1),
--- ('Great Plato', 4),
--- ('Siberian Plato', 4)
+-- ('Great Plato', 2),
+-- ('Siberian Plato', 2)
 
 
 
