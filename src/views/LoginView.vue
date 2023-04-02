@@ -14,16 +14,15 @@ const Auth = async (login, password) => {
         if (response.data.is_error == true){
             alert(response.data.error_texts);
         }
-        else {error.value = !error.value; console.log(error.value, "IM HERE");}
+        else {error.value = !error.value; console.log(error.value, "IM HERE");};
     }
 
     catch (er) {
         alert('Please insert login and password');
-        return error.value
-    }
+        return error.value;
+    };
     
-}
-console.log(loginPassword);
+};
 
 </script>
 

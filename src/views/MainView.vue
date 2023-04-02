@@ -56,15 +56,15 @@
     <main>
         <div class="buttons-container">
 
-            <CustomButton>Add picket</CustomButton>
-            <CustomButton>Add area</CustomButton>
-            <CustomButton>Edit area</CustomButton>
-            <CustomButton>Edit data</CustomButton>
-            <CustomButton>Edit project</CustomButton>
+            <button>Add picket</button>
+            <button>Add area</button>
+            <button>Edit area</button>
+            <button>Edit data</button>
+            <button>Edit project</button>
 
-            <CustomButton>Delete area</CustomButton>
-            <CustomButton>Delete picket</CustomButton>
-            <CustomButton>Delete project</CustomButton>
+            <button>Delete area</button>
+            <button>Delete picket</button>
+            <button>Delete project</button>
 
 
         </div>
@@ -131,6 +131,7 @@
         padding: 10px 15px;
         margin: 5px;
         appearance: none;
+        color: white;
         background: var(--btn-bg-color);
         border-radius: 8px;
         text-align: center;
