@@ -15,21 +15,27 @@
     const selecteAreaId = ref(0);
 
     const selectedPicketId = ref(0);
+
+    const allPicketsInArea = ref();
+
+    const selectedPicketData = ref();
     
     const handlePicketId = (id) => {
         selectedPicketId.value = id;
+        selectedPicketData.value = allPicketsInArea.value.find((picket) => picket.id == id);
     };
     
-    const handleAreaId = (areaId) => {
+    const handleAreaId = async (areaId) => {
         selecteAreaId.value = areaId;
-        console.log(selecteAreaId.value, "areaId in MainView");
+        allPicketsInArea.value = (await axios.get(`https://well-logging.mrsmori.moe/pickets?area_id=${areaId}`)).data;
+        selectedPicketData.value = null;
         selectedPicketId.value = 0;
     };
 
     const handleProjectId = (projectId) => {
         selectedProjectId.value = projectId;
+        selectedPicketData.value = null;
         selectedPicketId.value = 0;
-        console.log(projectId, "projectId in MainView");
     };
 
 </script>
@@ -57,12 +63,12 @@
 
         </div>
         <div class="picket-info-container">
-            <!-- <h1>Picket Data</h1>
-            <h2>Picket id: {{ data[searchProjectIndex].areas[searchAreaIndex].pickets[selectedPicketId].id }}</h2>
-            <h2>Electric Resistance: {{ data[searchProjectIndex].areas[searchAreaIndex].pickets[selectedPicketId].electric_resistance }}</h2>
-            <h2>Layer density: {{ data[searchProjectIndex].areas[searchAreaIndex].pickets[selectedPicketId].layer_density }}</h2>
-            <h2>Gamma ray: {{ data[searchProjectIndex].areas[searchAreaIndex].pickets[selectedPicketId].gamma_ray }}</h2>
-            <h2>Magnetic field: {{ data[searchProjectIndex].areas[searchAreaIndex].pickets[selectedPicketId].magnetic_field }}</h2> -->
+            <h1>Picket Data</h1>
+            <h2>Picket id: {{ selectedPicketId }}</h2>
+            <h2>Electric Resistance: {{ selectedPicketData?.electric_resistance }}</h2>
+            <h2>Layer density: {{ selectedPicketData?.layer_density }}</h2>
+            <h2>Gamma ray: {{ selectedPicketData?.gamma_ray }}</h2>
+            <h2>Magnetic field: {{ selectedPicketData?.magnetic_field }}</h2>
         </div>
         <div class="table-container">
             <CustomTable :selected-area-id="selecteAreaId" @getPicketId = "handlePicketId" />

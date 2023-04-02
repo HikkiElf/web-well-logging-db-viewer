@@ -11,11 +11,10 @@
 
     watch(toRef(props, 'selectedAreaId'), async (newIndex) => {
         refPicketsInArea.value = (await axios.get(`https://well-logging.mrsmori.moe/pickets?area_id=${props.selectedAreaId}`)).data;
-        console.log(refPicketsInArea.value, "PICKETS")
     })
 
     const changePicketId = (picketId) => {
-        emit('getPicketId', picketId-1);
+        emit('getPicketId', picketId);
     };
 </script>
 
