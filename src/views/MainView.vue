@@ -9,55 +9,29 @@
     import CustomTable from '../components/CustomTable.vue';
     import CustomSelectArea from '../components/CustomSelectArea.vue';
     import CustomSelectProject from '../components/CustomSelectProject.vue';
-
-    // import data
-    import data from "../data/data.json";
     
     const searchAreaIndex = ref(0);
     
-    const searchProjectIndex = ref(0);
-
-    const allAreas = ref(data[searchProjectIndex.value].areas)
+    const selectedProjectId = ref(0);
 
     const selectedPicketId = ref(0);
-
-    const responseGetProjects = ref();
-    const responceGetProjectName = ref("");
-
-
-    onMounted( () => {
-        // try {
-        //     responseGetProjects.value = axios.get('https://well-logging.mrsmori.moe/projects');
-            
-        // } catch (error) {
-        //     console.log(error);
-        // }
-        // responceGetProjectName.value = responseGetProjects.value.data.projects[searchProjectIndex.value].project_name;
-    })
-    
     
     const handlePicketId = (id) => {
         selectedPicketId.value = id;
     };
     
-    const handleAreaName = (areaName) => {
-        console.log(allAreas.value);
-        allAreas.value = data[searchProjectIndex.value].areas;
-        searchAreaIndex.value = allAreas.value.findIndex((area) => area.area_name === areaName);
-        selectedPicketId.value = 0; 
-        console.log(searchProjectIndex.value, searchAreaIndex.value)
-        console.log(data[searchProjectIndex.value].areas[searchAreaIndex.value].pickets);
+    const handleAreaId = (areaName) => {
+        console.log(areaName);
+        // allAreas.value = data[searchProjectIndex.value].areas;
+        // searchAreaIndex.value = allAreas.value.findIndex((area) => area.area_name === areaName);
+        selectedPicketId.value = 0;
         
     };
 
-    const handleProjectName = (projectName) => {
-        searchProjectIndex.value = data.findIndex((data) => data.project_name === projectName);
+    const handleProjectId = (projectId) => {
+        selectedProjectId.value = projectId;
+        console.log(projectId);
         selectedPicketId.value = 0;
-        // console.log(searchProjectIndex.value, searchAreaIndex.value)
-        // console.log(data[searchProjectIndex.value].areas[searchAreaIndex.value].pickets);
-
-        // responceGetProjectName.value = responseGetProjects.value.data.projects[searchProjectIndex.value].project_name;
-        // console.log(responceGetProjectName.value, "IM HERE HELP");
     };
 
 </script>
@@ -65,9 +39,9 @@
 <template>
     <header>
         <h1>Select project: </h1>
-        <CustomSelectProject @getProjectName="handleProjectName"></CustomSelectProject>
+        <CustomSelectProject @get-project-id="handleProjectId"></CustomSelectProject>
         <h1>Select area:</h1>
-        <CustomSelectArea @getAreaName="handleAreaName" :selected-project-index="searchProjectIndex"></CustomSelectArea>
+        <CustomSelectArea @get-area-id="handleAreaId" :selected-project-id="selectedProjectId"></CustomSelectArea>
     </header>
     <main>
         <div class="buttons-container">
@@ -85,15 +59,15 @@
 
         </div>
         <div class="picket-info-container">
-            <h1>Picket Data</h1>
+            <!-- <h1>Picket Data</h1>
             <h2>Picket id: {{ data[searchProjectIndex].areas[searchAreaIndex].pickets[selectedPicketId].id }}</h2>
             <h2>Electric Resistance: {{ data[searchProjectIndex].areas[searchAreaIndex].pickets[selectedPicketId].electric_resistance }}</h2>
             <h2>Layer density: {{ data[searchProjectIndex].areas[searchAreaIndex].pickets[selectedPicketId].layer_density }}</h2>
             <h2>Gamma ray: {{ data[searchProjectIndex].areas[searchAreaIndex].pickets[selectedPicketId].gamma_ray }}</h2>
-            <h2>Magnetic field: {{ data[searchProjectIndex].areas[searchAreaIndex].pickets[selectedPicketId].magnetic_field }}</h2>
+            <h2>Magnetic field: {{ data[searchProjectIndex].areas[searchAreaIndex].pickets[selectedPicketId].magnetic_field }}</h2> -->
         </div>
         <div class="table-container">
-            <CustomTable :area-search-index="searchAreaIndex" :project-search-index="searchProjectIndex" @getPicketId = "handlePicketId" />
+            <!-- <CustomTable :area-search-index="searchAreaIndex" :project-search-index="searchProjectIndex" @getPicketId = "handlePicketId" /> -->
         </div>
     </main>
 </template>

@@ -7,7 +7,6 @@
     const pickets = ref(data[props.projectSearchIndex].areas[props.areaSearchIndex].pickets);
     
     watch(toRef(props, 'projectSearchIndex'), async (newIndex) => {
-    //    console.log(newIndex, 'projectSearchIndex');
        pickets.value = data[props.projectSearchIndex].areas[props.areaSearchIndex].pickets;
     })
 
