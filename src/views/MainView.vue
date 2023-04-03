@@ -56,15 +56,19 @@
     <main>
         <div class="buttons-container">
 
-            <button>Add picket</button>
-            <button>Add area</button>
-            <button>Edit area</button>
-            <button>Edit data</button>
-            <button>Edit project</button>
+            <div class="employee-buttons" v-if="userStatus != 'Client'">
+                <button>Add picket</button>
+                <button>Add area</button>
+                <button>Edit area</button>
+                <button>Edit data</button>
+                <button>Edit project</button>
+                <div class="moderator-buttons" v-if="userStatus == 'Moderator'">
+                    <button>Delete area</button>
+                    <button>Delete picket</button>
+                    <button>Delete project</button>
+                </div>
+            </div>
 
-            <button>Delete area</button>
-            <button>Delete picket</button>
-            <button>Delete project</button>
 
 
         </div>
