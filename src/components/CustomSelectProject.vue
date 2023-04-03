@@ -2,6 +2,7 @@
     import { ref, watch, toRef, onMounted } from 'vue';
     import { useLoginPassword } from '../data/loginPassword';
     import axios, { isCancel, AxiosError} from 'axios';
+    import { useRouter } from 'vue-router';
 
     const emit = defineEmits(['getProjectId', 'getUserStatus']);
 
@@ -15,12 +16,15 @@
 
     const {loginPassword} = useLoginPassword()
 
+    const router = useRouter();
+
     onMounted(async () => {
         try {
-            responseGetProjects.value = await axios.get(`https://well-logging.mrsmori.moe/login?login=${loginPassword.login}&password=${loginPassword.password}`, { withCredentials: true });      
+            responseGetProjects.value = await axios.get(`https://well-logging.mrsmori.moe/login?login=${loginPassword.login}&password=${loginPassword.password}`, { withCredentials: true });
         } 
         catch (error) {
             console.log(error);
+            router.push({path: '/login'});
         }
         refAllProjects.value = JSON.stringify(responseGetProjects.value.data.projects);        
         refAllProjects.value = JSON.parse(refAllProjects.value);
