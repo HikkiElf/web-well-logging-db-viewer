@@ -41,7 +41,6 @@
 
     const handelUserStatus = (status) => {
         userStatus.value = status
-        console.log(userStatus.value, "YEAAAAAHA");
     };
 
 </script>
