@@ -2,12 +2,15 @@
     // import functions
     import { ref, onUpdated} from 'vue';
     import axios from 'axios';
+    import Plotly from 'plotly.js-dist'
 
     // import components
     import CustomTable from '../components/CustomTable.vue';
     import CustomSelectArea from '../components/CustomSelectArea.vue';
     import CustomSelectProject from '../components/CustomSelectProject.vue';
     import { RouterLink } from 'vue-router';
+
+    const graphContainer = ref(null);
     
     const selectedProjectId = ref(0);
 
@@ -42,6 +45,14 @@
     const handelUserStatus = (status) => {
         userStatus.value = status
     };
+    const test = () => {
+        console.log(graphContainer.value)
+        Plotly.newPlot(graphContainer.value, [{
+        x: [1, 2, 3, 4, 5],
+        y: [1, 2, 4, 8, 16] }], {
+        margin: { t: 0 } } );
+    };
+
 
 </script>
 
@@ -68,8 +79,6 @@
                 </div>
             </div>
 
-
-
         </div>
         <div class="picket-info-container">
             <h1>Picket Data</h1>
@@ -86,6 +95,10 @@
             <button>Exit</button>
         </RouterLink>
     </main>
+    <button @click="test"></button>
+    <div ref="graphContainer">
+        
+    </div>
 </template>
 
 <style scoped>
