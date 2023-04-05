@@ -1,14 +1,14 @@
 <script setup>
 // import functions
-import { ref } from 'vue';
-import axios from 'axios';
-import Plotly from 'plotly.js-dist'
+import { ref } from "vue";
+import axios from "axios";
+import Plotly from "plotly.js-dist";
 
 // import components
-import CustomTable from '../components/CustomTable.vue';
-import CustomSelectArea from '../components/CustomSelectArea.vue';
-import CustomSelectProject from '../components/CustomSelectProject.vue';
-import { RouterLink } from 'vue-router';
+import CustomTable from "../components/CustomTable.vue";
+import CustomSelectArea from "../components/CustomSelectArea.vue";
+import CustomSelectProject from "../components/CustomSelectProject.vue";
+import { RouterLink } from "vue-router";
 
 const graphContainer = ref(null);
 
@@ -26,12 +26,18 @@ const userStatus = ref();
 
 const handlePicketId = (id) => {
     selectedPicketId.value = id;
-    selectedPicketData.value = allPicketsInArea.value.find((picket) => picket.id == id);
+    selectedPicketData.value = allPicketsInArea.value.find(
+        (picket) => picket.id == id
+    );
 };
 
 const handleAreaId = async (areaId) => {
     selecteAreaId.value = areaId;
-    allPicketsInArea.value = (await axios.get(`https://well-logging.mrsmori.moe/pickets?area_id=${areaId}`)).data;
+    allPicketsInArea.value = (
+        await axios.get(
+            `https://well-logging.mrsmori.moe/pickets?area_id=${areaId}`
+        )
+    ).data;
     selectedPicketData.value = null;
     selectedPicketId.value = 0;
 };
@@ -43,31 +49,52 @@ const handleProjectId = (projectId) => {
 };
 
 const handelUserStatus = (status) => {
-    userStatus.value = status
+    userStatus.value = status;
 };
+
+const z = [
+    [10, 4, 70, 80, 23, 52, 35],
+    [10, 4, 70, 80, 23, 52, 35],
+    [10, 4, 70, 80, 23, 52, 35],
+    [10, 4, 70, 80, 23, 52, 35],
+    [10, 4, 70, 80, 23, 52, 35],
+    [10, 4, 70, 80, 23, 52, 35],
+    [10, 4, 70, 80, 23, 52, 35],
+    [10, 4, 70, 80, 23, 52, 35],
+    [10, 4, 70, 80, 23, 52, 35],
+    [10, 4, 70, 80, 23, 52, 35],
+    [10, 4, 70, 80, 23, 52, 35],
+    [10, 4, 70, 80, 23, 52, 35],
+    [10, 4, 70, 80, 23, 52, 35],
+    [10, 4, 70, 80, 23, 52, 35],
+];
+let layout = {
+    title: "Mt Bruno Elevation",
+    autosize: false,
+    width: 500,
+    height: 500,
+    margin: {
+        l: 65,
+        r: 50,
+        b: 65,
+        t: 90,
+    },
+};
+const data_z = { z: z, type: "surface" };
 const test = () => {
-    console.log(graphContainer.value)
-    Plotly.newPlot(graphContainer.value, [{
-        x: [1, 2, 3, 4, 5],
-        y: [1, 2, 4, 8, 16]
-    }], {
-        margin: { t: 0 }
-    });
+    Plotly.newPlot(graphContainer.value, [{ z: z, type: "surface" }]);
 };
-
-
 </script>
 
 <template>
     <header>
-        <h1>Select project: </h1>
+        <h1>Select project:</h1>
         <CustomSelectProject @get-project-id="handleProjectId" @get-user-status="handelUserStatus"></CustomSelectProject>
         <h1>Select area:</h1>
         <CustomSelectArea @get-area-id="handleAreaId" :selected-project-id="selectedProjectId"></CustomSelectArea>
     </header>
     <main>
         <div class="buttons-container">
-
             <div class="employee-buttons" v-if="userStatus != 'Client'">
                 <button>Add picket</button>
                 <button>Add area</button>
@@ -80,12 +107,13 @@ const test = () => {
                     <button>Delete project</button>
                 </div>
             </div>
-
         </div>
         <div class="picket-info-container">
             <h1>Picket Data</h1>
             <h2>Picket id: {{ selectedPicketId }}</h2>
-            <h2>Electric Resistance: {{ selectedPicketData?.electric_resistance }}</h2>
+            <h2>
+                Electric Resistance: {{ selectedPicketData?.electric_resistance }}
+            </h2>
             <h2>Layer density: {{ selectedPicketData?.layer_density }}</h2>
             <h2>Gamma ray: {{ selectedPicketData?.gamma_ray }}</h2>
             <h2>Magnetic field: {{ selectedPicketData?.magnetic_field }}</h2>
@@ -98,9 +126,7 @@ const test = () => {
         </RouterLink>
     </main>
     <button @click="test"></button>
-    <div ref="graphContainer">
-
-    </div>
+    <div ref="graphContainer"></div>
 </template>
 
 <style scoped>
@@ -129,7 +155,7 @@ main {
 }
 
 .buttons-container button {
-    width: 150px
+    width: 150px;
 }
 
 .picket-info-container {
@@ -159,7 +185,7 @@ button {
     text-align: center;
     text-decoration: none;
     font-size: 14px;
-    transition: transform .05s ease-in-out;
+    transition: transform 0.05s ease-in-out;
 }
 
 @media (min-width: 500px) {
