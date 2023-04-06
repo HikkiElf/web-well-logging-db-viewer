@@ -54,7 +54,7 @@ const handelUserStatus = (status) => {
 
 let layout = {
   paper_bgcolor: "rgba(0,0,0,0)",
-  title: "Electric Resistance",
+  title: "",
   autosize: false,
   width: 500,
   height: 500,
@@ -84,7 +84,7 @@ function CreateGraph(measurementsType) {
       y: [1, 2, 3, 4, 5],
     },
   ];
-  console.log(data_z);
+  layout.title = measurementsType;
   Plotly.newPlot(graphContainer.value, data_z, layout);
 }
 </script>
@@ -126,6 +126,9 @@ function CreateGraph(measurementsType) {
       <h2>Layer density: {{ selectedPicketData?.layer_density }}</h2>
       <h2>Gamma ray: {{ selectedPicketData?.gamma_ray }}</h2>
       <h2>Magnetic field: {{ selectedPicketData?.magnetic_field }}</h2>
+      <h2>
+        Creation Date: {{ selectedPicketData?.creation_date.slice(0, 16) }}
+      </h2>
     </div>
     <div class="table-container">
       <CustomTable
