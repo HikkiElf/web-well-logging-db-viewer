@@ -140,6 +140,9 @@ function CreateGraph(measurementsType) {
   <button @click="CreateGraph('electric_resistance')">
     Electric Resistance Graph
   </button>
+  <button @click="CreateGraph('layer_density')">Layer Density Graph</button>
+  <button @click="CreateGraph('gamma_ray')">Gamma Ray Graph</button>
+  <button @click="CreateGraph('magnetic_field')">Magnetic Field Graph</button>
   <div ref="graphContainer"></div>
 </template>
 
