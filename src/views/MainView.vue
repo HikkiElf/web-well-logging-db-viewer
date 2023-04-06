@@ -53,7 +53,8 @@ const handelUserStatus = (status) => {
 };
 
 let layout = {
-  title: "Mt Bruno Elevation",
+  paper_bgcolor: "rgba(0,0,0,0)",
+  title: "Electric Resistance",
   autosize: false,
   width: 500,
   height: 500,
@@ -64,17 +65,25 @@ function CreateGraph(measurementsType) {
   for (let i = 0; i < 5; i++) {
     z.push([]);
   }
+
   for (let i = 0; i < 5; i++) {
     for (let j = 0; j < 5; j++) {
       z[i].push(
         allPicketsInArea.value.find(
           (data) =>
             data?.X_picket_coord == j + 1 && data?.Y_picket_coord == i + 1
-        )?.electric_resistance
+        )[measurementsType]
       );
     }
   }
-  const data_z = [{ z: z, type: "surface" }];
+  const data_z = [
+    {
+      z: z,
+      type: "surface",
+      x: [1, 2, 3, 4, 5],
+      y: [1, 2, 3, 4, 5],
+    },
+  ];
   console.log(data_z);
   Plotly.newPlot(graphContainer.value, data_z, layout);
 }
@@ -128,7 +137,9 @@ function CreateGraph(measurementsType) {
       <button>Exit</button>
     </RouterLink>
   </main>
-  <button @click="CreateGraph">Create graph</button>
+  <button @click="CreateGraph('electric_resistance')">
+    Electric Resistance Graph
+  </button>
   <div ref="graphContainer"></div>
 </template>
 
