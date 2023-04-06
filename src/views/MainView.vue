@@ -52,32 +52,32 @@ const handelUserStatus = (status) => {
   userStatus.value = status;
 };
 
-const z = [
-  [10, 4, 70],
-  [10, 4, 70],
-  [10, 4, 70],
-  [10, 4, 70],
-  [10, 4, 70],
-  [10, 4, 70],
-  [10, 4, 70],
-  [10, 4, 70],
-  [10, 4, 70],
-  [10, 4, 70],
-  [10, 4, 70],
-  [10, 4, 70],
-  [10, 4, 70],
-  [10, 4, 70],
-];
 let layout = {
   title: "Mt Bruno Elevation",
   autosize: false,
   width: 500,
   height: 500,
 };
-const data_z = [{ z: z, type: "surface" }];
-const test = () => {
+
+function CreateGraph(measurementsType) {
+  let z = [];
+  for (let i = 0; i < 5; i++) {
+    z.push([]);
+  }
+  for (let i = 0; i < 5; i++) {
+    for (let j = 0; j < 5; j++) {
+      z[i].push(
+        allPicketsInArea.value.find(
+          (data) =>
+            data?.X_picket_coord == j + 1 && data?.Y_picket_coord == i + 1
+        )?.electric_resistance
+      );
+    }
+  }
+  const data_z = [{ z: z, type: "surface" }];
+  console.log(data_z);
   Plotly.newPlot(graphContainer.value, data_z, layout);
-};
+}
 </script>
 
 <template>
@@ -128,7 +128,7 @@ const test = () => {
       <button>Exit</button>
     </RouterLink>
   </main>
-  <button @click="test"></button>
+  <button @click="CreateGraph">Create graph</button>
   <div ref="graphContainer"></div>
 </template>
 
