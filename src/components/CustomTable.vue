@@ -1,21 +1,25 @@
-<script setup> 
-    // import { defineProps } from 'vue';
-    import { ref, watch, toRef, isRef } from "vue";
-    import axios, { isCancel, AxiosError} from 'axios';
+<script setup>
+// import { defineProps } from 'vue';
+import { ref, watch, toRef, isRef } from "vue";
+import axios, { isCancel, AxiosError } from "axios";
 
-    const props = defineProps(['selectedAreaId']);
+const props = defineProps(["selectedAreaId"]);
 
-    const emit = defineEmits(['getPicketId']);
+const emit = defineEmits(["getPicketId"]);
 
-    const refPicketsInArea = ref();
+const refPicketsInArea = ref();
 
-    watch(toRef(props, 'selectedAreaId'), async (newIndex) => {
-        refPicketsInArea.value = (await axios.get(`https://well-logging.mrsmori.moe/pickets?area_id=${props.selectedAreaId}`)).data;
-    })
+watch(toRef(props, "selectedAreaId"), async (newIndex) => {
+    refPicketsInArea.value = (
+        await axios.get(
+            `https://well-logging.mrsmori.moe/pickets?area_id=${props.selectedAreaId}`
+        )
+    ).data;
+});
 
-    const changePicketId = (picketId) => {
-        emit('getPicketId', picketId);
-    };
+const changePicketId = (picketId) => {
+    emit("getPicketId", picketId);
+};
 </script>
 
 <template>
@@ -25,7 +29,7 @@
             <th>X</th>
             <th>Y</th>
         </tr>
-        <tr v-for="picket in refPicketsInArea" :key="picket.id" @click="changePicketId(picket.id)" >
+        <tr v-for="picket in refPicketsInArea" :key="picket.id" @click="changePicketId(picket.id)">
             <td>{{ picket.id }}</td>
             <td>{{ picket.X_picket_coord }}</td>
             <td>{{ picket.Y_picket_coord }}</td>
@@ -34,7 +38,6 @@
 </template>
 
 <style lang="scss" scoped>
-
 table {
     width: 150px;
     // height: 200px;
@@ -55,7 +58,7 @@ th {
 
 td {
     padding: 9px 8px;
-    transition: .1s linear;
+    transition: 0.1s linear;
     font-size: 20px;
 }
 
@@ -71,5 +74,4 @@ tr:hover {
 tr:last-child {
     border-bottom: none;
 }
-
 </style>
