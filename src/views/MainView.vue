@@ -92,15 +92,9 @@ function CreateGraph(measurementsType) {
 <template>
   <header>
     <h1>Select project:</h1>
-    <CustomSelectProject
-      @get-project-id="handleProjectId"
-      @get-user-status="handelUserStatus"
-    ></CustomSelectProject>
+    <CustomSelectProject @get-project-id="handleProjectId" @get-user-status="handelUserStatus"></CustomSelectProject>
     <h1>Select area:</h1>
-    <CustomSelectArea
-      @get-area-id="handleAreaId"
-      :selected-project-id="selectedProjectId"
-    ></CustomSelectArea>
+    <CustomSelectArea @get-area-id="handleAreaId" :selected-project-id="selectedProjectId"></CustomSelectArea>
   </header>
   <main>
     <div class="buttons-container">
@@ -131,10 +125,7 @@ function CreateGraph(measurementsType) {
       </h2>
     </div>
     <div class="table-container">
-      <CustomTable
-        :selected-area-id="selecteAreaId"
-        @getPicketId="handlePicketId"
-      />
+      <CustomTable :selected-area-id="selecteAreaId" @getPicketId="handlePicketId" />
     </div>
     <RouterLink to="/login">
       <button>Exit</button>
@@ -189,9 +180,12 @@ main {
 }
 
 .table-container {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
   overflow-y: auto;
   overflow-x: hidden;
-  border: 2px solid white;
+  /* border: 2px solid white; */
   height: 59%;
 }
 
