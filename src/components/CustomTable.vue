@@ -66,6 +66,7 @@ const changePicketId = (picketId) => {
 <style lang="scss" scoped>
 table {
     margin-top: 5px;
+    margin-left: 2px;
     width: 160px;
     // height: 200px;
     position: relative;

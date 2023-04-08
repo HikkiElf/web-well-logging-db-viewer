@@ -187,6 +187,7 @@ main {
   overflow-x: hidden;
   /* border: 2px solid white; */
   height: 59%;
+  padding-left: 10px;
 }
 
 button {
